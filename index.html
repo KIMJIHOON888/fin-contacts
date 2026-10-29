@@ -192,6 +192,49 @@ tbody tr.fav td{border-bottom-color:var(--favln)}
 .ct .mi.cp:active{opacity:.55}
 .ct .mi.cp::after{content:" ⧉";font-size:10px;opacity:0;transition:.12s}
 .ct .mi.cp:hover::after{opacity:.65}
+/* ===== 중요 메모 ===== */
+.btn.memo{background:#fff4e0;border-color:#e8b45c;color:#8a5a04;font-weight:700}
+.btn.memo:hover{background:#ffe9c7;border-color:#d79a2e}
+.btn.memo .cnt{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 5px;margin-left:2px;
+  border-radius:999px;background:#d79a2e;color:#fff;font-size:10.5px;font-weight:800;font-variant-numeric:tabular-nums}
+:root[data-theme="dark"] .btn.memo,
+:root:not([data-theme="light"]) .btn.memo{background:#2e2616;border-color:#6b5222;color:#f2b45a}
+.mlist{display:flex;flex-direction:column;gap:9px}
+.mcard{border:1px solid var(--line);border-left-width:4px;border-radius:10px;padding:10px 12px;background:var(--panel2);
+  display:flex;gap:10px;align-items:flex-start}
+.mcard.pin{box-shadow:0 0 0 2px var(--accentsoft)}
+.mcard .no{flex:0 0 auto;min-width:26px;height:26px;border-radius:7px;display:grid;place-items:center;
+  font-size:11.5px;font-weight:800;font-variant-numeric:tabular-nums}
+.mcard .bd2{flex:1 1 auto;min-width:0}
+.mcard .tx{font-size:13px;line-height:1.55;white-space:pre-wrap;word-break:keep-all}
+.mcard .mt{font-size:10.5px;color:var(--ink4);margin-top:5px}
+.mcard .ops{display:flex;gap:4px;flex:0 0 auto}
+.mc-y{border-left-color:#e0a62a}.mc-y .no{background:#fdf3e2;color:#8a5a04}
+.mc-b{border-left-color:#2f74c0}.mc-b .no{background:#e8f0f9;color:#1d4e86}
+.mc-g{border-left-color:#1a9163}.mc-g .no{background:#e9f6f0;color:#0d6e4c}
+.mc-r{border-left-color:#cf3b30}.mc-r .no{background:#fdeeec;color:#a8201a}
+.mc-p{border-left-color:#8456c4}.mc-p .no{background:#f2ecfb;color:#5b3a8e}
+:root[data-theme="dark"] .mc-y .no,:root:not([data-theme="light"]) .mc-y .no{background:#2e2616;color:#e8b25c}
+:root[data-theme="dark"] .mc-b .no,:root:not([data-theme="light"]) .mc-b .no{background:#17283c;color:#7fb2e5}
+:root[data-theme="dark"] .mc-g .no,:root:not([data-theme="light"]) .mc-g .no{background:#102a23;color:#4ecb9d}
+:root[data-theme="dark"] .mc-r .no,:root:not([data-theme="light"]) .mc-r .no{background:#2c1b1a;color:#f2817a}
+:root[data-theme="dark"] .mc-p .no,:root:not([data-theme="light"]) .mc-p .no{background:#241b33;color:#b998e8}
+.pinflag{font-size:10px;font-weight:800;color:var(--accent);margin-right:4px}
+.swatch{display:inline-flex;gap:5px;align-items:center}
+.swatch label{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:7px;cursor:pointer;
+  border:2px solid transparent;font-size:0}
+.swatch input{position:absolute;opacity:0;pointer-events:none}
+.swatch label[data-c=y]{background:#e0a62a}.swatch label[data-c=b]{background:#2f74c0}
+.swatch label[data-c=g]{background:#1a9163}.swatch label[data-c=r]{background:#cf3b30}
+.swatch label[data-c=p]{background:#8456c4}
+.swatch input:checked+span{box-shadow:0 0 0 2px var(--panel),0 0 0 4px var(--accent)}
+.swatch span{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:7px;cursor:pointer}
+/* 부록 편집 */
+.apxbar{display:flex;gap:7px;align-items:center;margin-bottom:9px;flex-wrap:wrap}
+.apxbar .hint{font-size:11.5px;color:var(--ink3)}
+.ib td .mini{width:auto;padding:3px 8px}
+.ib .opcol{white-space:nowrap;width:1%}
+.ib .locked{font-size:11.5px;color:var(--ink4);padding:14px;text-align:center}
 .toast{position:fixed;left:50%;bottom:30px;z-index:2147483647;transform:translateX(-50%) translateY(12px);
   background:var(--navy);color:#fff;padding:11px 20px;border-radius:999px;font-size:12.5px;font-weight:700;
   letter-spacing:-.01em;box-shadow:var(--sh3);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;
@@ -346,8 +389,13 @@ dialog form,.vw{display:flex;flex-direction:column;max-height:92vh}
   <input name="phone" inputmode="numeric" autocomplete="username" placeholder="010-0000-0000" required>
   <label>비밀번호</label>
   <input name="pw" type="password" autocomplete="current-password" placeholder="비밀번호" required>
+  <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink2);font-weight:600;margin:2px 0 10px;cursor:pointer">
+    <input type="checkbox" name="keep" style="width:auto;margin:0"> 로그인 상태 7일간 유지
+  </label>
   <button class="btn pri" type="submit" id="bLogin">로그인</button>
-  <p class="gnote">처음이시면 관리자가 알려 준 비밀번호로 로그인하세요.<br>비밀번호를 잊으셨다면 관리자에게 초기화를 요청하세요.</p>
+  <p class="gnote">처음이시면 관리자가 알려 준 비밀번호로 로그인하세요.<br>
+    비밀번호를 잊으셨다면 관리자에게 초기화를 요청하세요.<br>
+    <b>체크하지 않으면 창을 닫을 때 자동으로 로그아웃됩니다.</b></p>
 </form></div>
 
 <!-- 최초 로그인 비밀번호 변경 -->
@@ -369,7 +417,7 @@ dialog form,.vw{display:flex;flex-direction:column;max-height:92vh}
 <header class="hd"><div class="wrap">
   <div class="brand">
     <div class="mark">OL</div>
-    <div><span class="ey">Owners Lab · Finance Desk <b style="font-weight:700;opacity:.8">v4.2</b></span><h1>금융기관 담당자 리스트</h1></div>
+    <div><span class="ey">Owners Lab · Finance Desk <b style="font-weight:700;opacity:.8">v4.4</b></span><h1>금융기관 담당자 리스트</h1></div>
   </div>
   <div class="kpi" id="kpi"></div>
   <div class="whoami" id="whoami" hidden></div>
@@ -379,6 +427,7 @@ dialog form,.vw{display:flex;flex-direction:column;max-height:92vh}
   <div class="srch"><span class="ic">⌕</span><input type="search" id="q" placeholder="검색 — 이름 · 지점 · 키워드 (예: 기보, 재단, 제조업)"></div>
   <button class="btn" type="button" id="btnExp">전체 접기</button>
   <button class="btn" type="button" id="btnFav">★ 즐겨찾기</button>
+  <button class="btn memo" type="button" id="btnMemo" hidden>📌 중요 메모 <span class="cnt" id="memoCnt">0</span></button>
   <span class="sel"><select id="fRg"><option value="">전체 지역</option></select></span>
   <span class="sel"><select id="fBank"><option value="">전체 은행</option></select></span>
   <span class="sel"><select id="fCon"><option value="">연락여부 전체</option><option value="Y">연락함</option><option value="N">미연락 (전체)</option><option value="Nown">미연락 · 내 파일 등록</option><option value="Next">미연락 · 받은 자료만</option></select></span>
@@ -394,11 +443,11 @@ dialog form,.vw{display:flex;flex-direction:column;max-height:92vh}
 
 <div class="wrap"><section class="apx">
   <details><summary>부록 A. BNK부산은행 지점 대표번호 (운영 파일)</summary>
-    <div class="ib"><table><thead><tr><th>지점</th><th>대표번호</th></tr></thead><tbody id="apxA"></tbody></table></div></details>
+    <div class="ib" id="boxA"></div></details>
   <details><summary>부록 B. 운영 파일 우측 메모 — 고액 담보·브릿지 대출 안내 (작성자 미표기)</summary>
-    <div class="ib"><div class="ad" id="apxB"></div></div></details>
+    <div class="ib" id="boxB"></div></details>
   <details><summary>부록 C. 기타 명함 — 비금융 (세무·법무·특허·기업 등)</summary>
-    <div class="ib"><table><thead><tr><th>분류</th><th>회사/기관</th><th>성명</th><th>직함</th><th>휴대폰</th><th>사무실</th><th>메모</th></tr></thead><tbody id="apxC"></tbody></table></div></details>
+    <div class="ib" id="boxC"></div></details>
   <details><summary>부록 D. 정리 기준 · 사용법</summary><div class="ib"><ul>
     <li><b>지역</b> = 담당자의 <b>지점 소재지</b> 기준 분류(서울·경기·인천·충청·호남·영남·기타). 지점이 없거나 전국 단위면 「기타」. 각 담당자 「수정」 창에서 바꿀 수 있습니다.</li>
     <li><b>연락여부</b> = 내가 운영하는 파일(주요은행 주소록 취합)의 「마지막통화」 기록 기준. 기록이 있으면 <b>연락함</b>, 없으면 <b>미연락</b>.</li>
@@ -413,6 +462,44 @@ dialog form,.vw{display:flex;flex-direction:column;max-height:92vh}
 </section></div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- 중요 메모 -->
+<dialog id="mdlg"><div class="vw">
+  <div class="mh"><div class="t">📌 중요 메모</div>
+    <div class="s">팀 전체가 함께 보는 메모입니다 · 고정한 메모가 맨 위에 옵니다</div></div>
+  <div class="vb">
+    <div class="row" style="display:flex;gap:7px;margin-bottom:12px">
+      <button class="btn pri" type="button" id="bMemoNew">＋ 새 메모</button>
+    </div>
+    <div class="mlist" id="mList"></div>
+  </div>
+  <div class="mf"><button class="btn pri" type="button" id="mX">닫기</button></div>
+</div></dialog>
+
+<!-- 메모 작성 -->
+<dialog id="medlg"><form method="dialog" id="meFrm">
+  <div class="mh"><div class="t" id="meT">메모 작성</div><div class="s">번호는 자동으로 붙습니다</div></div>
+  <div class="mb">
+    <label class="full">내용 *<textarea name="body" required style="min-height:110px"></textarea></label>
+    <label>색상
+      <span class="swatch">
+        <label data-c="y"><input type="radio" name="color" value="y" checked><span></span></label>
+        <label data-c="b"><input type="radio" name="color" value="b"><span></span></label>
+        <label data-c="g"><input type="radio" name="color" value="g"><span></span></label>
+        <label data-c="r"><input type="radio" name="color" value="r"><span></span></label>
+        <label data-c="p"><input type="radio" name="color" value="p"><span></span></label>
+      </span></label>
+    <label>맨 위 고정<select name="pinned"><option value="0">고정 안 함</option><option value="1">📌 맨 위에 고정</option></select></label>
+  </div>
+  <div class="mf"><button class="btn" value="cancel" formnovalidate>취소</button><button class="btn pri" value="ok">저장</button></div>
+</form></dialog>
+
+<!-- 부록 항목 편집 -->
+<dialog id="axdlg"><form method="dialog" id="axFrm">
+  <div class="mh"><div class="t" id="axT">부록 항목</div><div class="s">* 표시는 필수입니다</div></div>
+  <div class="mb" id="axBody"></div>
+  <div class="mf"><button class="btn" value="cancel" formnovalidate>취소</button><button class="btn pri" value="ok">저장</button></div>
+</form></dialog>
 
 <!-- 관리 패널 (관리자 전용) -->
 <dialog id="adlg"><div class="vw">
@@ -467,7 +554,6 @@ dialog form,.vw{display:flex;flex-direction:column;max-height:92vh}
 </form></dialog>
 <datalist id="bankList"></datalist>
 
-<script id="seed" type="application/json">{"savedAt": "2026-10-12T17:40:00+09:00", "R": [{"bank": "IBK기업은행", "name": "이경", "br": "둔촌동지점 (명함) · 이전 구의동", "t": "팀장(부지점장)", "m": "010-3230-5479", "o": "02-482-7500 (내선 330)", "fx": "0505-075-0348", "em": "", "intro": "서류: 카톡 전달", "last": "2025-07-14", "pro": ["신용 가능(BBB+ 이상)", "보증서 대환 가능", "창업·기술금융 가능"], "con": ["농축산 업종 안 함", "담보도 BBB+ 이상만", "신규 보증서 취급 불가"], "memo": [["24", "신용검토 가능"], ["25", "신용(등급 bbb+이상), 농축산안함, 담보는bbb+이상만, 보증서는못하지만 대환가능, 창업기술금융가능"]], "pub": "공개자료 미확인", "st": "active", "star": true, "note": "명함상 둔촌동지점 → 2025 주소록의 구의동에서 이동 추정", "src": ["24", "25", "C"], "id": "p000", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "IBK기업은행", "name": "최용배", "br": "구의동", "t": "과장", "m": "010-3135-1586", "o": "", "fx": "0505-075-0348", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "", "st": "check", "star": false, "note": "2024 주소록에만 있음 — 재직 확인 필요", "src": ["24"], "id": "p001", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "IBK기업은행", "name": "최유창", "br": "주안 드림", "t": "지점장", "m": "010-4617-6405", "o": "", "fx": "0505-075-0273", "em": "", "intro": "담당/소개: 황인국(2024)", "last": "", "pro": [], "con": ["적극적이지 않음", "계속 체크 필요"], "memo": [["24", "기업은행 스타일. 계속 체크필요. 아주 적극적이지는 않음"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["24", "25"], "id": "p002", "contact": "N", "extra": "", "rg": "인천"}, {"bank": "IBK기업은행", "name": "(담당자 미상)", "br": "칠곡지점", "t": "", "m": "", "o": "053-314-9893", "fx": "", "em": "ibktax530@ibk.co.kr", "intro": "", "last": "2026-07-27", "pro": [], "con": [], "memo": [["25", "서류 첨부해서 메일보냈음."]], "pub": "", "st": "active", "star": false, "note": "담당자 이름·직책 미기재 — 회신 확인 필요", "src": ["25"], "id": "p003", "contact": "Y", "extra": "", "rg": "영남"}, {"bank": "IBK기업은행", "name": "고민영", "br": "이태원지점", "t": "대리", "m": "010-2929-9831", "o": "02-796-1581 (내선 4111)", "fx": "0505-075-0056", "em": "kmy8221@ibk.co.kr", "intro": "", "last": "2025-09-03", "pro": [], "con": ["현재 기업대출 많아 부담 — 보류"], "memo": [["25", "현재는 기업대출이 많아 부담된다. 추후 연락주길 원한다."]], "pub": "", "st": "check", "star": false, "note": "본인이 추후 연락 요청", "src": ["25"], "id": "p004", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "IBK기업은행", "name": "박동순", "br": "아산지점", "t": "지점장", "m": "010-8804-8991", "o": "041-592-4701", "fx": "0505-076-4436", "em": "", "intro": "담당/소개: 황인국(2024)", "last": "", "pro": ["충청권 커버"], "con": [], "memo": [["24", "충청권"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["24", "25"], "id": "p005", "contact": "N", "extra": "", "rg": "충청"}, {"bank": "IBK기업은행", "name": "황성규", "br": "둔촌동지점 (명함) · 이전 문정법조타운", "t": "지점장", "m": "010-5564-9746", "o": "02-482-7502 (내선 200)", "fx": "0505-077-3639 (2024: 0505-075-0585)", "em": "", "intro": "서류: 팩스로 요청", "last": "2025-07-22", "pro": ["화끈한 스타일", "보증서 + 신용 모두 가능", "서울·경기 인근 커버"], "con": [], "memo": [["24", "화끈한 스타일. 신용도 가능"], ["25", "서울, 경기인근, 보증서 + 신용"]], "pub": "선릉역지점 지점장 (인사기사 2026-01-27)", "st": "check", "star": true, "note": "공개 인사기사상 선릉역지점으로 전보 — 현 근무처 통화 확인", "src": ["24", "25", "C"], "id": "p006", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "IBK기업은행", "name": "오재민", "br": "신길동", "t": "지점장", "m": "010-7105-6014", "o": "", "fx": "0505-075-0047", "em": "", "intro": "", "last": "", "pro": ["오래 거래한 관계"], "con": ["지점장 된 뒤 선별적(하고 싶은 것만 함)"], "memo": [["24", "우리랑 오래됨. 지점장되고나서 변함. 하고싶은 것 만 함."]], "pub": "", "st": "active", "star": false, "note": "2024 비고: 지점확인필요", "src": ["24", "25"], "id": "p007", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "IBK기업은행", "name": "허성호", "br": "마포 신수동", "t": "팀장", "m": "010-5260-2967", "o": "", "fx": "0505-075-0048", "em": "", "intro": "", "last": "", "pro": ["수탁보증 취급"], "con": [], "memo": [["24", "수탁보증 함"]], "pub": "", "st": "check", "star": false, "note": "2024 주소록에만 있음 · 지점확인필요", "src": ["24"], "id": "p008", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "IBK기업은행", "name": "송대한", "br": "군산 (7월 중순 발령)", "t": "지점장", "m": "010-4780-7004", "o": "", "fx": "", "em": "deahankiup@ibk.co.kr", "intro": "상필 소개", "last": "", "pro": ["신보·기보 잘 풀어줌", "부지점장 시절부터 자주 거래"], "con": [], "memo": [["25", "신보, 기보 잘 풀음/ 부지점장 시설부터 자주보다가 이번에 지점장 승진/ 7월 중순까지 교육"], ["25", "FAX칸: 군산으로 발령 / 마지막통화칸: 7월 중순발령"]], "pub": "", "st": "check", "star": false, "note": "지점장 승진 후 군산 발령 — 신규 지점 연락처 확인 필요 / 마지막통화 칸에 날짜 대신 「7월 중순발령」 기재", "src": ["25", "26"], "id": "p009", "contact": "Y", "extra": "", "rg": "호남"}, {"bank": "IBK기업은행", "name": "이은성", "br": "용산중앙", "t": "지점장", "m": "010-7243-5547", "o": "", "fx": "0505-075-0058", "em": "sstar21@gmail.com", "intro": "상필 소개", "last": "2026-06-09", "pro": ["심사역(팀장) 출신", "신보·기보 진행"], "con": [], "memo": [["26", "동시화 지점에서 팀장(심사역)으로 있다가 용산중앙지점장으로 발령/ 신보,기보 진행"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["25", "26"], "id": "p010", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "IBK기업은행", "name": "조일형", "br": "(지점 미기재)", "t": "지점장", "m": "010-7270-2373", "o": "", "fx": "0505-075-0202", "em": "", "intro": "", "last": "", "pro": ["오래 거래 · 친절", "보증서 취급"], "con": ["신용 잘 안 함", "자주 체크 필요"], "memo": [["24", "우리랑 오래됨. 친절하지만 자주 체크해야함. 신용 잘 안함. 보증서"]], "pub": "", "st": "active", "star": false, "note": "지점확인필요", "src": ["24", "25"], "id": "p011", "contact": "N", "extra": "", "rg": "기타"}, {"bank": "IBK기업은행", "name": "이준섭", "br": "명동", "t": "차장", "m": "010-6721-2389", "o": "", "fx": "0505-075-0148", "em": "", "intro": "", "last": "", "pro": ["똘똘하고 일 잘함", "신용 가능(지점장 성향 따라)"], "con": ["잘난 척 심함"], "memo": [["24", "똘똘하고 일잘함. 잘난척심함. 지점장성향따라 신용도 가능"], ["25", "똘똘하고 일잘함. 잘난척심함. 신용도 가능"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["24", "25"], "id": "p012", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "IBK기업은행", "name": "김현철", "br": "화정역", "t": "부지점장", "m": "010-8388-3041", "o": "", "fx": "0505-075-0427", "em": "", "intro": "", "last": "", "pro": [], "con": ["기업은행 스타일(보수적)"], "memo": [["24", "기업은행 스타일"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["24", "25"], "id": "p013", "contact": "N", "extra": "", "rg": "경기"}, {"bank": "IBK기업은행", "name": "이승엽", "br": "문정법조타운", "t": "지점장", "m": "010-2267-3490", "o": "", "fx": "0505-076-9008", "em": "", "intro": "", "last": "", "pro": ["피드백 빠름", "신용검토 가능"], "con": ["부수거래 요구", "할당실적 적어 소극적"], "memo": [["24", "피드백빠르고 신용검토가능. 부수거래있음. 할당실적 적어서 잘안함"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["24", "25"], "id": "p014", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "IBK기업은행", "name": "정성운", "br": "둔촌동지점", "t": "차장", "m": "", "o": "02-482-7503 (내선 410)", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "공개자료 미확인", "st": "active", "star": false, "note": "휴대폰 명함 미기재", "src": ["C"], "id": "p015", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "IBK기업은행", "name": "한은영", "br": "MBC지점 (명함)", "t": "부지점장", "m": "010-9272-0828", "o": "02-785-2039 (내선 330)", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "삼양동지점 지점장 (인사기사 2026-01-27)", "st": "check", "star": false, "note": "지점장 승진·전보 기사 — 본인 확인 필요", "src": ["C"], "id": "p016", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "IBK기업은행", "name": "박지영", "br": "구의동지점", "t": "과장", "m": "", "o": "02-3436-2106 (내선 530)", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "동명이인 확인 필요 (2026-07-14 예비지점장 후보 기사)", "st": "active", "star": false, "note": "휴대폰 명함 미기재", "src": ["C"], "id": "p017", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "IBK기업은행", "name": "유문예", "br": "MBC지점 (명함)", "t": "지점장", "m": "010-8877-5394", "o": "02-785-2039 (내선 200)", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "인사동지점 지점장 (인사기사 2025-01-16)", "st": "check", "star": false, "note": "전보 기사 — 본인 확인 필요", "src": ["C"], "id": "p018", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "KB국민은행", "name": "윤종길", "br": "광진구청", "t": "지점장", "m": "010-8762-7498", "o": "", "fx": "0502-306-4689", "em": "", "intro": "담당/소개: 황인국(2024)", "last": "", "pro": ["개인사업자 신용검토 가능"], "con": [], "memo": [["24", "개인사업자 신용검토 가능"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["24", "25"], "id": "p019", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "KB국민은행", "name": "김현수", "br": "남부영업팀(본점 소속)", "t": "팀장", "m": "010-9118-6122", "o": "", "fx": "0502-307-4827", "em": "", "intro": "담당/소개: 황인국(2024)", "last": "", "pro": ["말 잘 통함", "경기남부 전역 커버"], "con": ["소속 지점 없어 전결권 없음"], "memo": [["24", "말잘들음. 본점소속으로 경기남부 커버가능 소속지점 없어 전결권은 없음"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["24", "25"], "id": "p020", "contact": "N", "extra": "", "rg": "경기"}, {"bank": "KB국민은행", "name": "김민균", "br": "여의도", "t": "지점장", "m": "010-2467-3173", "o": "", "fx": "", "em": "mkkim1025@kbfg.com", "intro": "담당/소개: 황인국(2024)", "last": "", "pro": ["신용 가능"], "con": [], "memo": [["24", "신용도 가능"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["24", "25"], "id": "p021", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "KB국민은행", "name": "한승권", "br": "(지점 미기재)", "t": "부지점장", "m": "010-3235-1845", "o": "", "fx": "", "em": "", "intro": "상필 소개", "last": "", "pro": [], "con": [], "memo": [["25", "연락해봐야함."]], "pub": "", "st": "check", "star": false, "note": "첫 연락 전", "src": ["25"], "id": "p022", "contact": "N", "extra": "", "rg": "기타"}, {"bank": "KB국민은행", "name": "김동경", "br": "진천역지점(대구)", "t": "팀장", "m": "010-9372-1766", "o": "", "fx": "0502-308-3749", "em": "redberserk@kbfg.com", "intro": "윤종욱 팀장 소개", "last": "2025-08-05", "pro": ["경상도(대구) 지역"], "con": ["중국 발령 — 현재 진행 불가"], "memo": [["25", "경상도 지역 (대구소재) >> 중국발령남"]], "pub": "", "st": "off", "star": false, "note": "", "src": ["25"], "id": "p023", "contact": "Y", "extra": "", "rg": "영남"}, {"bank": "KB국민은행", "name": "이학현", "br": "임학동", "t": "부지점장", "m": "010-7759-6096", "o": "", "fx": "0502-307-9818", "em": "", "intro": "담당/소개: 황인국(2024)", "last": "", "pro": ["착함"], "con": ["약간 어리버리"], "memo": [["24", "약간 어리버리. 착함"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["24", "25"], "id": "p024", "contact": "N", "extra": "", "rg": "인천"}, {"bank": "KB국민은행", "name": "전성일", "br": "노원역 (명함) · 이전 이태원", "t": "지점장 (2025 주소록: 부지점장)", "m": "010-8779-2205", "o": "02-935-1096", "fx": "0502-306-2606", "em": "", "intro": "담당/소개: 황인국(2024)", "last": "", "pro": [], "con": [], "memo": [], "pub": "과거 기사만 확인 (2020 진접종합금융센터)", "st": "check", "star": false, "note": "명함 기준 노원역 지점장 — 현 근무처 확인", "src": ["24", "25", "C"], "id": "p025", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "KB국민은행", "name": "고민수", "br": "상암DMC종합금융센터", "t": "부센터장", "m": "010-8907-0170", "o": "", "fx": "0502-306-0310", "em": "minsu.ko@kbfg.com", "intro": "담당/소개: 전성웅(2024)", "last": "", "pro": [], "con": [], "memo": [], "pub": "", "st": "active", "star": false, "note": "", "src": ["24", "25"], "id": "p026", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "KB국민은행", "name": "윤칠성", "br": "연신내", "t": "차장", "m": "010-6325-8671", "o": "", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "", "st": "active", "star": false, "note": "지점확인필요", "src": ["24", "25"], "id": "p027", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "KB국민은행", "name": "김철호", "br": "파주", "t": "부센터장", "m": "010-4717-9214", "o": "", "fx": "0502-306-1124", "em": "", "intro": "", "last": "", "pro": ["대환 + 추가자금"], "con": [], "memo": [["24", "bbb이상 TCB신용 가능. 국민 수탁보증 취급가능"], ["25", "대환 + 추가 자금"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["24", "25"], "id": "p028", "contact": "N", "extra": "", "rg": "경기"}, {"bank": "KB국민은행", "name": "김필수", "br": "연신내종합금융센터 / 중부2(연신내)지역본부", "t": "센터장(지역본부장)", "m": "010-5555-7022", "o": "02-3673-6575", "fx": "02-354-0061", "em": "", "intro": "", "last": "", "pro": ["BBB 이상 TCB 신용 가능", "국민 수탁보증 취급"], "con": [], "memo": [["24", "bbb이상 TCB신용 가능. 국민 수탁보증 취급가능"]], "pub": "과거 기사만 확인 (2019 지역본부장 전보)", "st": "active", "star": false, "note": "", "src": ["24", "25", "C"], "id": "p029", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "KB국민은행", "name": "임성민", "br": "수지종합금융센터", "t": "지점장", "m": "010-6421-7494", "o": "", "fx": "031-261-1106", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "", "st": "active", "star": false, "note": "지점확인필요(2024)", "src": ["24", "25"], "id": "p030", "contact": "N", "extra": "", "rg": "경기"}, {"bank": "KB국민은행", "name": "손민수", "br": "창동종합금융센터", "t": "부센터장", "m": "010-9066-2270", "o": "", "fx": "0502-306-8119", "em": "", "intro": "담당/소개: 전성웅(2024)", "last": "", "pro": ["보증서 적극 검토 의사"], "con": [], "memo": [["24", "보증서 적극적으로 검토하겠다고함"]], "pub": "", "st": "check", "star": false, "note": "2024 주소록에만 있음", "src": ["24"], "id": "p031", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "KB국민은행", "name": "김동춘", "br": "천천동지점(수원)", "t": "지점장", "m": "010-6770-4392", "o": "", "fx": "0502-307-7599", "em": "dongchun.kim@kbfg.com", "intro": "담당/소개: 전성웅(2024)", "last": "", "pro": [], "con": [], "memo": [["24", "전라도 순천지점에서 1월11일부로 수원으로 이동"]], "pub": "", "st": "check", "star": false, "note": "2024 주소록에만 있음", "src": ["24"], "id": "p032", "contact": "N", "extra": "", "rg": "경기"}, {"bank": "KB국민은행", "name": "이인석", "br": "서초동종합금융센터", "t": "지점장", "m": "010-8833-6917", "o": "02-3673-7528", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "인사기사 확인 (2025-01-10 지점장 승진)", "st": "active", "star": false, "note": "", "src": ["C"], "id": "p033", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "KB국민은행", "name": "김기태", "br": "서초동종합금융센터", "t": "부센터장", "m": "010-7447-8451", "o": "02-3673-7520", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "공개자료 미확인", "st": "active", "star": false, "note": "", "src": ["C"], "id": "p034", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "신한은행", "name": "손유승", "br": "시화 중앙금융센터", "t": "지점장", "m": "010-3125-6957", "o": "", "fx": "0505-178-7307", "em": "saabe@shinhan.com", "intro": "오너스 소개 (통화완료)", "last": "2026-04-17", "pro": ["수도권 전 지역", "신보·기보·재단(성장촉진보증부대출)·무보 모두 진행"], "con": [], "memo": [["25", "수도권전지역, 신보,기보,재단(성장촉진보증부대출)등 무보도 진행 - 담보건은 메일로 전달 - 보증건은 카톡전달이 빠름"]], "pub": "", "st": "active", "star": true, "note": "서류: 담보건 = 메일 / 보증건 = 카톡이 빠름", "src": ["25"], "id": "p035", "contact": "Y", "extra": "", "rg": "경기"}, {"bank": "신한은행", "name": "심형섭", "br": "시화 중앙금융센터", "t": "부지점장", "m": "010-6485-0175", "o": "", "fx": "0505-178-8022", "em": "bigman0821@shinhan.com", "intro": "", "last": "2026-07-09", "pro": ["경선 팀장 자금 진행 이력"], "con": [], "memo": [["25", "경선팀장 자금 진행했던 담당자"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["25"], "id": "p036", "contact": "Y", "extra": "", "rg": "경기"}, {"bank": "신한은행", "name": "서대웅", "br": "여수금융센터", "t": "부지점장", "m": "010-2223-8556", "o": "", "fx": "0505-178-6894", "em": "seo06@shinhan.com", "intro": "", "last": "2026-07-21", "pro": [], "con": ["신한 정보동의서 작성 후에만 진행"], "memo": [["25", "신한은행 정보동의서 작성후 진행"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["25"], "id": "p037", "contact": "Y", "extra": "", "rg": "호남"}, {"bank": "신한은행", "name": "김대진", "br": "남동산단", "t": "지점장", "m": "010-2288-7677", "o": "", "fx": "0505-178-1429", "em": "jinikim9@shinhan.com", "intro": "유래경 팀장 소개", "last": "2026-03-26", "pro": [], "con": [], "memo": [], "pub": "", "st": "active", "star": true, "note": "", "src": ["25"], "id": "p038", "contact": "Y", "extra": "", "rg": "인천"}, {"bank": "신한은행", "name": "이민구", "br": "신사동 금융센터", "t": "부지점장", "m": "010-3040-5656", "o": "", "fx": "0505-179-0127", "em": "lesassin@shinhan.com", "intro": "서류: 메일·팩스 가능", "last": "2025-07-22", "pro": ["업무처리 빠르고 잘함", "보증서·재단 모두 가능", "서울·경기 (업체 좋으면 지방도)"], "con": ["대체로 등급 좋은 기업만 하려 함", "아는 척 많이 함"], "memo": [["24", "업무처리 빠르고 잘하는편. 보증서도 잘함. 아는척도 많이함."], ["25", "업무처리 빠르고 잘하는편. 보증서도 잘함. 서울경기(업체좋으면 지방가능), 재단도 가능 하지만 대체로 등급이 좋은 기업만 하려고함"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["24", "25"], "id": "p039", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "신한은행", "name": "황지환", "br": "부평금융센터", "t": "팀장", "m": "010-8822-6650", "o": "", "fx": "0505-179-6501", "em": "", "intro": "서류: 카톡 전달 · 담당/소개: 채병준(2024)", "last": "2025-07-14", "pro": ["열정 가득(83년생)", "정책자금 지식 해박", "금리 적극적", "인천·김포·부천·부평"], "con": ["승진 욕심 있음(2024 메모)"], "memo": [["24", "83년생 열정가득함. 승진욕심있음. 정책자금 지식도 해박해서 금리 적극적"], ["25", "83년생 열정가득함(주로, 인천,김포,부천,부평지역) 정책자금 지식도 해박해서 금리 적극적"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["24", "25"], "id": "p040", "contact": "Y", "extra": "", "rg": "인천"}, {"bank": "신한은행", "name": "백원경", "br": "가락동금융센터", "t": "부지점장", "m": "010-2009-7082", "o": "", "fx": "", "em": "k_stephano@naver.com", "intro": "오너스 (요즘 잘 안 한다고 함)", "last": "2025-08-13", "pro": ["회신 빠름", "지점 50km 커버 · 여신 10억↑ 전국", "송파 재단 가능"], "con": ["요즘 잘 안 한다고 함"], "memo": [["25", "회신이 빠르고, 지점에서 50km까지는 커버가능 여신 10억이상은 전국, 송파지역 재단가능"]], "pub": "", "st": "check", "star": false, "note": "", "src": ["25"], "id": "p041", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "신한은행", "name": "양해두", "br": "전라북도(익산) · 2024: 시흥", "t": "지점장", "m": "010-5286-0834", "o": "", "fx": "0505-178-8427", "em": "mysan1234@shinhan.com", "intro": "", "last": "2025-08-25", "pro": ["등급 나오면 신용 가능", "보증서 이관 선호"], "con": ["본점 승인 거쳐야 함"], "memo": [["24", "등급나오면 신용도 가능하나 보증서 이관해주는거 좋아함. 본점승인 올림"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["24", "25"], "id": "p042", "contact": "Y", "extra": "", "rg": "호남"}, {"bank": "신한은행", "name": "송영삼", "br": "엑스포타워금융센터(대전)", "t": "부지점장", "m": "010-2724-7437", "o": "", "fx": "0505-177-2022", "em": "shbiz2022@shinhan.com", "intro": "", "last": "2025-08-05", "pro": ["충청권(대전) 업체 적극적"], "con": [], "memo": [["25", "충청권 업체 적극적 (대전)"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["25"], "id": "p043", "contact": "Y", "extra": "", "rg": "충청"}, {"bank": "신한은행", "name": "박종을", "br": "테헤란금융센터", "t": "부지점장", "m": "010-9028-7997", "o": "", "fx": "0505-177-1809", "em": "", "intro": "담당/소개: 전성웅(2024)", "last": "2025-07-16", "pro": ["적극적 · 신기보 지점 직접 방문 접수"], "con": ["퇴직함"], "memo": [["24", "적극적이며 신기보 지점에 직접 방문하여 접수"], ["25", "e-mail칸: 퇴직함"]], "pub": "", "st": "off", "star": false, "note": "", "src": ["24", "25"], "id": "p044", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "신한은행", "name": "임정석", "br": "청주 봉명동", "t": "지점장", "m": "010-2059-7197", "o": "", "fx": "0505-179-2428", "em": "", "intro": "담당/소개: 황인국(2024)", "last": "", "pro": ["경기남부 업체 적극 검토", "신용 가능"], "con": [], "memo": [["24", "경기남부업체 적극적으로 검토. 신용도 가능"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["24", "25"], "id": "p045", "contact": "N", "extra": "", "rg": "충청"}, {"bank": "신한은행", "name": "유영하", "br": "이천지점", "t": "지점장", "m": "010-2345-9857", "o": "", "fx": "0505-178-9123", "em": "", "intro": "담당/소개: 황인국(2024)", "last": "", "pro": ["친절·적극적", "이천 지역 위주"], "con": [], "memo": [["24", "이천지역 위주 친절하고 적극적인편"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["24", "25"], "id": "p046", "contact": "N", "extra": "", "rg": "경기"}, {"bank": "신한은행", "name": "김형신", "br": "원당센터", "t": "부지점장", "m": "010-2418-7952", "o": "", "fx": "0505-178-4236", "em": "", "intro": "", "last": "", "pro": ["오래 거래", "매담대 등 적극적이었음"], "con": ["최근 부실 다수 발생 → 소극화 우려"], "memo": [["24", "오래 같이함. 매담대 등 적극적이었으나 최근 부실 많이터짐"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["24", "25"], "id": "p047", "contact": "N", "extra": "", "rg": "경기"}, {"bank": "신한은행", "name": "권순표", "br": "공덕", "t": "부지점장", "m": "010-8670-7218", "o": "", "fx": "0505-178-7218", "em": "", "intro": "담당/소개: 황인국(2024)", "last": "", "pro": ["등급 나오면 신용 가능"], "con": ["태도 불량", "우리 몰래 업체 진행 이력 — 신뢰 주의"], "memo": [["24", "등급나오면 신용도 가능. 싸가지 없음. 우리 몰래 업체 하기도 함"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["24", "25"], "id": "p048", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "신한은행", "name": "이은경", "br": "송현동", "t": "부지점장", "m": "010-5098-2846", "o": "", "fx": "0505-5719-2395", "em": "", "intro": "담당/소개: 황인국(2024)", "last": "", "pro": ["신용 검토", "성향 좋음 · 어떻게든 해주려 함"], "con": [], "memo": [["24", "신용도 검토. 성향좋음. 어떻게든 해줄려고함"]], "pub": "", "st": "check", "star": false, "note": "2024 주소록에만 있음", "src": ["24"], "id": "p049", "contact": "N", "extra": "", "rg": "기타"}, {"bank": "신한은행", "name": "서석현", "br": "천안금융센터", "t": "부지점장", "m": "010-6224-4925", "o": "", "fx": "0505-178-6941", "em": "", "intro": "담당/소개: 황인국(2024)", "last": "", "pro": ["충청권 업체 적극 검토"], "con": [], "memo": [["24", "충청권 업체 적극적 검토하는편"]], "pub": "", "st": "check", "star": false, "note": "2024 주소록에만 있음", "src": ["24"], "id": "p050", "contact": "N", "extra": "", "rg": "충청"}, {"bank": "하나은행", "name": "허경덕", "br": "가락중앙점", "t": "팀장", "m": "010-2737-6385", "o": "", "fx": "02-408-1667", "em": "garakjungang@hanafn.com", "intro": "이경열 팀원", "last": "2026-08-19", "pro": ["경기권까지 커버", "신보·기보·무보 진행"], "con": [], "memo": [["25", "경기권 까지 커버가능, 신보, 기보, 무뵤 진행"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["25"], "id": "p051", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "하나은행", "name": "최정화", "br": "금융센터지점(여의도)", "t": "부장", "m": "010-9187-1993", "o": "", "fx": "02-782-1325", "em": "jhchoi98@hanafn.com", "intro": "추장호 팀장 소개", "last": "2026-04-24", "pro": ["서울시 소상공인 안심통장 취급"], "con": [], "memo": [["25", "서울시 소상공인 안심통장"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["25"], "extra": "서울시 소상공인 안심통장 (제3차 서울형 자영업자 위기극복 안심통장 특별보증) — 원본 셀 메모\n1. 지원대상 (3가지 모두 충족): 업력 개업 후 1년 초과 개인사업자 / NICE 신용평점 600점 이상 / 최근 3개월 매출 합계 200만원 이상 또는 최근 1년분 신고 매출액 1,000만원 이상\n2. 대출조건: 마이너스 통장대출 1,000만원 / 1년 만기 일시상환(최대 5년, 1년 단위 연장) / 금리 CD3개월물 + 2.0% / 보증료 연 1.0%(보증 약정 시 9만원 납부), 보증비율 90%\n3. 신청 불가(중복제한): 1호·2호 안심통장 사용 중인 자 / 정부 소상공인 비즈플러스 카드보증 보유자 / 지역신보 자체 카드·근보증 보유자\n4. 준비 서류: 기본(사업자등록증명원 사본, 본인 신분증 원본) / 필수(국세·지방세 납세증명서, 주민등록등본) / 소득(부가세 과세표준증명원 또는 면세사업자수입금액증명원, 소득금액증명원) / 임차(사업장·거주지 임차계약서, 임차인에 한함)\n5. 주요 제한 업종: 유흥주점, 카지노·사행시설, 골프장·무도장, 금융·보험·연금업, 부동산업(일부), 담배 도매·중개, 다단계판매업, 가상자산 매매, 성인용품·오락, 점술·유사서비스업 등\n※ 업종 판단 문의: 서울신용보증재단 1577-6119", "id": "p052", "contact": "Y", "rg": "서울"}, {"bank": "하나은행", "name": "전종규", "br": "일원역", "t": "부장", "m": "010-2506-6691", "o": "", "fx": "02-459-7763", "em": "c314342@naver.com", "intro": "", "last": "2025-08-20", "pro": ["적극적", "사업자번호만으로 선검토"], "con": ["서울·근교까지만"], "memo": [["25", "적극적, 서울과 근교까지만 가능 사업자 번호만 주면 선 검토 해준다고 함"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["25"], "id": "p053", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "하나은행", "name": "권태형", "br": "일원역", "t": "차장", "m": "010-7506-0116", "o": "", "fx": "02-459-7763", "em": "kth@hanafn.com", "intro": "김원호 팀장 소개", "last": "2025-07-29", "pro": ["보증서 전부 취급(재단 포함)", "부동산 취급", "업체 좋으면 신용", "제조업 전국 커버"], "con": ["제조업 외는 수도권만"], "memo": [["25", "보증서 다 취급 (재단도 가능), 부동산취급 업체좋으면 신용가능, (제조업:전국커버)(그외 수도권)"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["25"], "id": "p054", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "하나은행", "name": "김원호", "br": "일원역 → 본점 발령", "t": "팀장", "m": "010-3164-9291", "o": "", "fx": "02-537-0138", "em": "", "intro": "담당/소개: 황인국(2024)", "last": "2025-07-29", "pro": ["신기보 모르는 지점도 접수", "친절함"], "con": ["본점 발령 — 이제 진행 안 함", "기표 후 부수거래 약간 유도"], "memo": [["24", "신기보 모르는지점도 접수가능. 친절함. 기표후 부수거래 약간유도"], ["25", "(본점 발령후 서울경기만가능) / e-mail칸: 본점발령. 이제 진행안함 밑에 권태형 차장소개해줌"]], "pub": "", "st": "off", "star": false, "note": "후임: 권태형 차장", "src": ["24", "25"], "id": "p055", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "하나은행", "name": "조준철", "br": "채널혁신섹션 (명함) · 이전 본부RM", "t": "팀장", "m": "010-9980-4321", "o": "", "fx": "", "em": "", "intro": "", "last": "2025-07-10", "pro": ["의사·병의원 생신용 가능(수도권)", "2024엔 전국 커버·적극적"], "con": ["현재 의사·병의원만 가능"], "memo": [["24", "전국커버. 적극적임"], ["25", "현재는 의사만 가능 (수도권, 생신용가능) 매출확인되는 병의원도 가능"]], "pub": "공개자료 미확인", "st": "active", "star": true, "note": "사무실 전화 명함 미기재 (02-3709-6552는 팩스)", "src": ["24", "25", "C"], "id": "p056", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "하나은행", "name": "이형국", "br": "용산LS타워지점", "t": "부지점장(부장)", "m": "010-9105-9729", "o": "", "fx": "02-790-3186", "em": "", "intro": "", "last": "", "pro": ["친해지면 신규상품 정보 잘 줌", "일 잘함", "재단 접수"], "con": ["항상 바쁨"], "memo": [["24", "친해지면 신규상품 등 정보 잘줌. 일 잘하는 편이나 항상 바쁨. 재단접수"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["24", "25"], "id": "p057", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "하나은행", "name": "최규창", "br": "천안공단지점", "t": "지점장", "m": "010-9894-7919", "o": "", "fx": "", "em": "", "intro": "", "last": "", "pro": ["마당발 · 적극적", "충북·충남·전북 일부"], "con": [], "memo": [["25", "충북, 충남, 전북일부 (마당발, 적극적)"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["25"], "id": "p058", "contact": "N", "extra": "", "rg": "충청"}, {"bank": "하나은행", "name": "임중훈", "br": "대천지점", "t": "지점장", "m": "010-5436-9416", "o": "", "fx": "", "em": "", "intro": "서류: 메일·카톡 가능", "last": "2025-07-10", "pro": ["충남 지역", "신보 대전·서산지점 친분", "제조업 위주"], "con": ["첫 거래 신용 불가"], "memo": [["25", "충남지역, 신보대전, 서산지점 친분 제조업위주, 서류는 메일, 카톡가능, 첫거래신용X"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["25"], "id": "p059", "contact": "Y", "extra": "", "rg": "충청"}, {"bank": "하나은행", "name": "강석태", "br": "천호역금융센터", "t": "지점장", "m": "010-2858-8740", "o": "", "fx": "", "em": "", "intro": "오너스 (AZ 조기열 SM 소개)", "last": "2025-07-18", "pro": ["회신 빠름", "수도권 · 제조업/IT 위주"], "con": ["애매한 업체는 안 함"], "memo": [["25", "수도권 내 지역, 제조업 IT위주, (애매한 업체는 안하는편), 회신이 빠름 (AZ 조기열SM소개)"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["25"], "id": "p060", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "하나은행", "name": "오지훈", "br": "중계동지점", "t": "지점장", "m": "010-3234-8930", "o": "", "fx": "", "em": "", "intro": "", "last": "", "pro": ["적극적", "담보대환 잘함"], "con": [], "memo": [["25", "적극적 담보대환 잘함,"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["25"], "id": "p061", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "하나은행", "name": "김명희", "br": "굽은다리역지점", "t": "지점장", "m": "010-8987-4738", "o": "", "fx": "02-483-8993", "em": "mhkim@hanafn.com", "intro": "담당/소개: 전성웅(2024)", "last": "", "pro": [], "con": [], "memo": [], "pub": "", "st": "active", "star": false, "note": "", "src": ["24", "25"], "id": "p062", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "하나은행", "name": "소정호", "br": "미사역지점", "t": "지점장", "m": "010-4235-0896", "o": "", "fx": "031-796-7856", "em": "jeonghoso@hanafn.com", "intro": "담당/소개: 전성웅(2024)", "last": "", "pro": [], "con": [], "memo": [], "pub": "", "st": "active", "star": false, "note": "", "src": ["24", "25"], "id": "p063", "contact": "N", "extra": "", "rg": "경기"}, {"bank": "하나은행", "name": "오선화", "br": "홍제역지점", "t": "부지점장", "m": "010-8706-0924", "o": "", "fx": "02-394-8482", "em": "sunwha1.oh@hanafn.com", "intro": "담당/소개: 전성웅(2024)", "last": "", "pro": [], "con": [], "memo": [], "pub": "", "st": "active", "star": false, "note": "", "src": ["24", "25"], "id": "p064", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "하나은행", "name": "주낙준", "br": "분당 PB센터", "t": "차장", "m": "010-7577-2961", "o": "", "fx": "031-779-1111", "em": "jugabang@hanafn.com", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "", "st": "active", "star": false, "note": "", "src": ["24", "25"], "id": "p065", "contact": "N", "extra": "", "rg": "경기"}, {"bank": "하나은행", "name": "장수연", "br": "면목금융센터지점", "t": "지점장", "m": "010-9505-1610", "o": "02-493-1111 (내선 200)", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "인사기사 확인 (2026-01-11)", "st": "active", "star": false, "note": "", "src": ["C"], "id": "p066", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "하나은행", "name": "이종서", "br": "면목금융센터지점", "t": "마케팅부장", "m": "010-9166-7809", "o": "02-493-1111 (내선 342)", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "공개자료 미확인", "st": "active", "star": false, "note": "", "src": ["C"], "id": "p067", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "하나은행", "name": "김병준", "br": "교하지점", "t": "지점장", "m": "010-5014-7834", "o": "031-948-1111 (내선 300)", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "과거 기사만 확인 (2024-01-16)", "st": "active", "star": false, "note": "", "src": ["C"], "id": "p068", "contact": "N", "extra": "", "rg": "경기"}, {"bank": "하나은행", "name": "최성현", "br": "교하지점", "t": "마케팅부장", "m": "010-2277-7707", "o": "031-948-1111 (내선 324)", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "공개자료 미확인", "st": "active", "star": false, "note": "", "src": ["C"], "id": "p069", "contact": "N", "extra": "", "rg": "경기"}, {"bank": "하나은행", "name": "이동원", "br": "계동지점", "t": "기업금융지점장 / RM부장", "m": "010-9192-5990", "o": "02-746-4305", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "동명이인 확인 필요", "st": "active", "star": false, "note": "", "src": ["C"], "id": "p070", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "우리은행", "name": "이현경", "br": "청담중앙지점", "t": "지점장", "m": "010-3126-3580", "o": "", "fx": "0505-002-7725", "em": "hyun0569@wooribank.com", "intro": "김민호 대표 소개", "last": "2026-04-09", "pro": [], "con": [], "memo": [], "pub": "", "st": "active", "star": true, "note": "", "src": ["25"], "id": "p071", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "우리은행", "name": "최도현", "br": "영등포4가 지점", "t": "지점장", "m": "010-8801-5420", "o": "", "fx": "0505-002-5951", "em": "veiled72@wooribank.com", "intro": "김찬욱 팀장 소개", "last": "2026-01-09", "pro": [], "con": ["매우 깐깐함 · 좋은 업체만 요구"], "memo": [["25", "엄청 깐깐함. 좋은 업체만 요구함."]], "pub": "", "st": "active", "star": true, "note": "메일 오타 수정: wooribnk.com → wooribank.com", "src": ["25"], "id": "p072", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "우리은행", "name": "최현순", "br": "광화문BIZ프라임센터", "t": "기업금융 3팀장", "m": "010-9010-2705", "o": "", "fx": "0505-003-8950", "em": "chyunsoon@wooribank.com", "intro": "직접 내방 · 명함 교환", "last": "2026-03-05", "pro": ["서울·경기·전국", "센터 심사 후 가까운 지점에서 집행", "재단·무보 일반보증 가능"], "con": ["원본에 「탈락」 표시"], "memo": [["25", "서울,경기,전국, 해당센터에서 심사후 가까운 지점에서 자금집행가능, (재단, 무보일반보증 진행 가능)"], ["25", "은행칸: 탈락 (행 전체 빨간색 표시)"]], "pub": "", "st": "off", "star": false, "note": "", "src": ["25"], "id": "p073", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "우리은행", "name": "박순빈", "br": "을지로5가", "t": "부지점장", "m": "010-9325-2476", "o": "", "fx": "050-5002-6940", "em": "", "intro": "담당/소개: 황인국(2024)", "last": "2025-07-09", "pro": ["등급 나오면 신용 검토", "착함"], "con": [], "memo": [["24", "등급나오면 신용검토가능. 착함"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["24", "25"], "id": "p074", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "우리은행", "name": "김정호", "br": "왕십리 · 2024: 모란", "t": "부지점장", "m": "010-4745-6360", "o": "", "fx": "050-5002-4573", "em": "", "intro": "담당/소개: 이지성(2024)", "last": "2025-07-28", "pro": ["신용 가능", "우직함", "재단·기금 가능"], "con": ["서울 지역만"], "memo": [["24", "신용도 가능. 우직한 스타일"], ["25", "신용도 가능. 우직한 스타일 (재단,기금) 서울 지역만 가능"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["24", "25"], "id": "p075", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "우리은행", "name": "김종선", "br": "(지점 미기재)", "t": "센터장", "m": "010-6365-3249", "o": "", "fx": "0505-002-5208", "em": "", "intro": "", "last": "", "pro": ["우리은행치고 적극적", "BBB 이상 신용 취급(보증서·담보 이관)"], "con": [], "memo": [["24", "우리은행 치고 적극적 bbb이상이면 신용취급(보증서나 담보 이관)"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["24", "25"], "id": "p076", "contact": "N", "extra": "", "rg": "기타"}, {"bank": "우리은행", "name": "서홍욱", "br": "여의도중앙센터", "t": "부지점장", "m": "010-5361-4647", "o": "", "fx": "0505-002-6952", "em": "", "intro": "", "last": "", "pro": ["업체 무조건 직접 방문"], "con": ["가끔 잠수", "신보는 마포로 접수"], "memo": [["24", "신보는 마포로 접수. 업체 무조건 처음에 찾아감. 가끔 잠수"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["24", "25"], "id": "p077", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "우리은행", "name": "황태종", "br": "자양동금융센터", "t": "부지점장", "m": "010-5626-1699", "o": "", "fx": "0505-002-7090", "em": "ttaejong@wooribank.com", "intro": "상필 소개", "last": "", "pro": ["신보 가능", "광진구 재단 가능"], "con": ["타 지역 재단 불가"], "memo": [["25", "신보, 재단(광진구) 가능/ 타지역 재단은 안됌"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["25", "26"], "id": "p078", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "우리은행", "name": "이창석", "br": "광주금융센터", "t": "대리", "m": "010-9877-6364", "o": "", "fx": "", "em": "lcs4220@wooribank.com", "intro": "상필 소개", "last": "", "pro": ["전라도 광주 신보·기보"], "con": [], "memo": [["25", "전라도 광주 신보, 기보 진행 가능"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["25", "26"], "id": "p079", "contact": "N", "extra": "", "rg": "호남"}, {"bank": "우리은행", "name": "정재훈", "br": "망우동", "t": "지점장", "m": "010-7194-6980", "o": "02-491-0010 (내선 200)", "fx": "0505-002-4471", "em": "", "intro": "담당/소개: 황인국(2024)", "last": "", "pro": ["등급 좋으면 TCB 신용 가끔"], "con": ["피드백 매우 느림", "자주 체크 필요"], "memo": [["24", "등급 좋으면 TCB신용 가끔 가능. 피드백 매우느림. 자주체크필요"]], "pub": "동명이인 확인 필요 (2026-07 강남 BIZ프라임센터 RM지점장 기사)", "st": "active", "star": false, "note": "", "src": ["24", "25", "C"], "id": "p080", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "우리은행", "name": "최인호", "br": "망우동지점", "t": "과장", "m": "", "o": "02-491-0010 (내선 412)", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "공개자료 미확인", "st": "active", "star": false, "note": "휴대폰 명함 미기재", "src": ["C"], "id": "p081", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "우리은행", "name": "김범영", "br": "종로금융센터", "t": "금융센터장", "m": "010-5527-1132", "o": "02-734-4491 (내선 200)", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "공개자료 미확인", "st": "active", "star": false, "note": "", "src": ["C"], "id": "p082", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "우리은행", "name": "김태호", "br": "종로금융센터", "t": "중소RM / 차장", "m": "010-9850-8976", "o": "02-734-4491 (내선 510)", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "공개자료 미확인", "st": "active", "star": false, "note": "2025 주소록엔 「하나은행 종로금융센터 지점장」으로 기재 — 명함 기준 우리은행으로 정정", "src": ["25", "C"], "id": "p083", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "NH농협은행", "name": "김세진", "br": "을지로4가", "t": "팀장", "m": "010-9268-9091", "o": "02-2280-3401", "fx": "02-2274-7606", "em": "nacf0419@nonghyup.com", "intro": "담당/소개: 황인국(2024)", "last": "2025-12-11", "pro": ["신보 강북지점과 친분 → 적극 검토"], "con": ["농신보 안 함"], "memo": [["24", "신보 강북지점 친해서 적극적으로 검토. 농신보 안함"], ["25", "사무실칸: 인사 하러 와라"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["24", "25", "C"], "id": "p084", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "NH농협은행", "name": "윤치호", "br": "을지로4가지점", "t": "지점장", "m": "010-4243-9526", "o": "02-2280-3400", "fx": "", "em": "", "intro": "담당/소개: 황인국(2024)", "last": "", "pro": [], "con": [], "memo": [], "pub": "공개자료 미확인", "st": "active", "star": false, "note": "", "src": ["24", "25", "C"], "id": "p085", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "NH농협은행", "name": "여준형", "br": "인천삼산지점", "t": "부지점장", "m": "010-6552-4314", "o": "032-521-2191", "fx": "032-527-0154", "em": "", "intro": "", "last": "", "pro": ["농신보 서부 가능"], "con": [], "memo": [["24", "농신보 서부 가능"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["24", "25", "C"], "id": "p086", "contact": "N", "extra": "", "rg": "인천"}, {"bank": "NH농협은행", "name": "최인규", "br": "원대금융센터(대구)", "t": "팀장", "m": "010-4268-1118", "o": "", "fx": "053-353-0983", "em": "hite9305@nonghyup.com", "intro": "윤종욱 팀장 소개", "last": "2025-08-05", "pro": ["경상도(대구) 지역"], "con": [], "memo": [["25", "경상도 지역 (대구 소재)"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["25"], "id": "p087", "contact": "Y", "extra": "", "rg": "영남"}, {"bank": "NH농협은행", "name": "박명숙", "br": "영천시 지부", "t": "지점장", "m": "010-3520-7135", "o": "", "fx": "054-338-4122", "em": "nacf0757-1@nonghyup.com", "intro": "경열 소개", "last": "2025-09-04", "pro": [], "con": ["본인은 진행 불가 — 팀장 소개 예정"], "memo": [["25", "팀장 소개 해준다고함 본인은 못한다고함"]], "pub": "", "st": "off", "star": false, "note": "원본 행 빨간색 표시", "src": ["25"], "id": "p088", "contact": "Y", "extra": "", "rg": "영남"}, {"bank": "NH농협은행", "name": "유민호", "br": "인천삼산지점", "t": "과장", "m": "", "o": "032-527-0021", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "공개자료 미확인", "st": "active", "star": false, "note": "휴대폰 명함 미기재", "src": ["C"], "id": "p089", "contact": "N", "extra": "", "rg": "인천"}, {"bank": "NH농협은행", "name": "송정훈", "br": "동탄역지점", "t": "지점장", "m": "010-4810-0333", "o": "031-378-0871", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "공개자료 미확인", "st": "active", "star": false, "note": "", "src": ["C"], "id": "p090", "contact": "N", "extra": "", "rg": "경기"}, {"bank": "NH농협은행", "name": "안동관", "br": "동탄역지점", "t": "팀장", "m": "010-8945-5685", "o": "031-378-0872", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "공개자료 미확인", "st": "active", "star": false, "note": "", "src": ["C"], "id": "p091", "contact": "N", "extra": "", "rg": "경기"}, {"bank": "Sh수협은행", "name": "최미경", "br": "성수(뚝섬)지점", "t": "지점장", "m": "010-4145-8061", "o": "", "fx": "", "em": "cmk314@suhyup-bank.com", "intro": "김민호 대표 소개", "last": "2026-09-11", "pro": ["재단 외 보증서 전부 취급"], "con": ["재단 불가"], "memo": [["25", "재단빼고 보증서 다다룸."]], "pub": "", "st": "active", "star": true, "note": "", "src": ["25"], "id": "p092", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "Sh수협은행", "name": "김미향", "br": "동소문동점", "t": "지점장", "m": "010-8756-8994", "o": "", "fx": "02-953-7485", "em": "mhkim325@suhyup-bank.com", "intro": "김민호 대표 소개", "last": "2026-04-09", "pro": ["적극적", "저축은행 추가 연계 가능"], "con": [], "memo": [["25", "적극적/ 저축은행 추가 연계가능"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["25"], "id": "p093", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "Sh수협은행", "name": "이원주", "br": "문정동 · 2024: 압구정", "t": "본부장", "m": "010-2492-8425", "o": "", "fx": "02-449-8676", "em": "dlgae2023@suhyup.co.kr", "intro": "상필 소개", "last": "", "pro": ["적극적", "담보대출 전문"], "con": [], "memo": [["24", "적극적"], ["26", "담보대출 전문"]], "pub": "", "st": "active", "star": true, "note": "2025 주소록에 2회(압구정·문정동) 중복 기재 → 1건으로 통합", "src": ["24", "25", "26"], "id": "p094", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "Sh수협은행", "name": "우승호", "br": "수원", "t": "지점장", "m": "010-8591-8227", "o": "", "fx": "", "em": "", "intro": "", "last": "2025-07-10", "pro": [], "con": [], "memo": [], "pub": "", "st": "active", "star": false, "note": "", "src": ["24", "25"], "id": "p095", "contact": "Y", "extra": "", "rg": "경기"}, {"bank": "Sh수협은행", "name": "전재웅", "br": "(지점 미기재)", "t": "부지점장", "m": "010-7120-9121", "o": "", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "", "st": "check", "star": false, "note": "2024 주소록에만 있음", "src": ["24"], "id": "p096", "contact": "N", "extra": "", "rg": "기타"}, {"bank": "Sh수협은행", "name": "박훈화", "br": "홍대", "t": "팀장", "m": "010-4764-4952", "o": "", "fx": "02-326-2035", "em": "", "intro": "", "last": "", "pro": ["농신보 북부"], "con": ["퇴직"], "memo": [["24", "농신보북부"], ["25", "이름칸: (퇴직) · 행 전체 빨간색"]], "pub": "", "st": "off", "star": false, "note": "", "src": ["24", "25"], "id": "p097", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "SC제일은행", "name": "김흥림", "br": "구미지점", "t": "팀장", "m": "010-9524-9572", "o": "", "fx": "054-455-4447", "em": "HeungRim.Kim@sc.com", "intro": "서류: 메일 접수", "last": "2026-07-27", "pro": ["경북 구미 지역"], "con": [], "memo": [["25", "경상북도 구미쪽 지역 (메일로 접수)"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["25"], "id": "p098", "contact": "Y", "extra": "", "rg": "영남"}, {"bank": "SC제일은행", "name": "이경수", "br": "양재", "t": "과장", "m": "010-6479-5680", "o": "", "fx": "02-6017-0500", "em": "KyoungSu.Lee@sc.com", "intro": "김민호 대표 소개", "last": "2026-04-09", "pro": ["법인대출"], "con": [], "memo": [["25", "법인대출"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["25"], "id": "p099", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "SC제일은행", "name": "염창성", "br": "이촌동지점", "t": "과장", "m": "010-3959-0104", "o": "", "fx": "02-2274-7606", "em": "ChangSung.yeom@sc.com", "intro": "김민호 대표 소개", "last": "2026-04-09", "pro": ["개인사업자·법인대출"], "con": [], "memo": [["25", "개인사업자, 법인대출"]], "pub": "", "st": "active", "star": true, "note": "팩스번호가 농협 을지로4가(김세진)와 동일 — 원본 확인 필요", "src": ["25"], "id": "p100", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "SC제일은행", "name": "서유승", "br": "구리지점", "t": "RM(과장) · 2025 주소록: 차장", "m": "010-7608-9339", "o": "031-551-1101", "fx": "", "em": "", "intro": "", "last": "", "pro": ["3년↑ 사업자 중금리 신용대출", "APT 한도 메리트", "신기보도 적극(당해 방침)"], "con": [], "memo": [["24", "3년이상 사업자 중금리 신용대출 및 APT 한도에 메리트. 올해는 신기보 열심이 한다고 함"]], "pub": "공개자료 미확인", "st": "active", "star": false, "note": "", "src": ["24", "25", "C"], "id": "p101", "contact": "N", "extra": "", "rg": "경기"}, {"bank": "SC제일은행", "name": "원영철", "br": "(지점 미기재)", "t": "지점장(부장)", "m": "010-5004-5523", "o": "", "fx": "02-511-8166", "em": "YoungCheol.Won@sc.com", "intro": "", "last": "", "pro": ["3년↑ 사업자 중금리 신용대출", "APT 한도 메리트"], "con": [], "memo": [["24", "3년이상 사업자 중금리 신용대출 및 APT 한도에 메리트"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["24", "25"], "id": "p102", "contact": "N", "extra": "", "rg": "기타"}, {"bank": "SC제일은행", "name": "김홍식", "br": "BB기업금융부 (명함) · 이전 송파", "t": "부장(기업금융지점장)", "m": "010-4707-8510", "o": "02-403-2890 (주소록: 02-407-7167)", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "동명이인 확인 필요", "st": "active", "star": false, "note": "", "src": ["24", "25", "C"], "id": "p103", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "SC제일은행", "name": "이보경", "br": "기업금융센터 / 구리지점", "t": "기업금융 RM", "m": "010-3285-1126", "o": "031-551-1103", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "공개자료 미확인", "st": "active", "star": false, "note": "", "src": ["C"], "id": "p104", "contact": "N", "extra": "", "rg": "경기"}, {"bank": "SC제일은행", "name": "김승영", "br": "(지점 미기재)", "t": "차장 / 비즈니스뱅킹 RM", "m": "010-8879-4038", "o": "02-777-9342", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "공개자료 미확인", "st": "active", "star": false, "note": "", "src": ["C"], "id": "p105", "contact": "N", "extra": "", "rg": "기타"}, {"bank": "BNK부산은행", "name": "이두한", "br": "수도권영업센터(서울영업팀)", "t": "부장", "m": "010-3621-2488", "o": "02-758-6270 (센터 대표 02-758-6232)", "fx": "051-608-5593", "em": "lye1008@naver.com", "intro": "김경록 센터장 소개", "last": "", "pro": ["수도권 전역 신청 가능", "기보 강함"], "con": ["수도권 외 전국은 불가"], "memo": [["25", "수도권, 기보강함"], ["26", "수도권 모두 신청 가능/ 전국은 안됨"]], "pub": "공식 홈페이지 담당자 소개 확인", "st": "active", "star": true, "note": "", "src": ["25", "26", "C"], "id": "p106", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "BNK부산은행", "name": "김경록", "br": "부산 (2026 발령) · 이전 기업영업센터(서울)", "t": "지점장", "m": "010-2747-4551", "o": "02-758-6270 (명함·서울 근무 시)", "fx": "", "em": "misoyoun@busanbank.co.kr", "intro": "서류: 메일로 전송", "last": "2025-07-14", "pro": ["적극적 · 직접 미팅", "기보 강함 · 보증서 위주", "거래업체 신용 가능"], "con": ["부산 발령 → 부산권 신보·기보만"], "memo": [["25", "부산, 적극적, 기보에 강함 보증서위주(거래업체 신용가능) 직접미팅진행"], ["26", "수도권에서 부산으로 발령/ 부산쪽 신보, 기보 가능"]], "pub": "공개자료 미확인", "st": "active", "star": true, "note": "", "src": ["25", "26", "C"], "id": "p107", "contact": "Y", "extra": "", "rg": "영남"}, {"bank": "BNK부산은행", "name": "박상호", "br": "수도권영업센터", "t": "기업금융지점장", "m": "010-3277-5508", "o": "02-758-6230", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "공개자료 미확인", "st": "active", "star": false, "note": "", "src": ["C"], "id": "p108", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "BNK부산은행", "name": "최재철", "br": "수도권영업센터", "t": "기업금융지점장", "m": "010-3001-6966", "o": "02-758-6237", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "공개자료 미확인", "st": "active", "star": false, "note": "", "src": ["C"], "id": "p109", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "BNK부산은행", "name": "최승식", "br": "수도권영업센터", "t": "기업금융지점장", "m": "010-6270-2409", "o": "02-758-6236", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "공개자료 미확인", "st": "active", "star": false, "note": "", "src": ["C"], "id": "p110", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "iM뱅크", "name": "최양준", "br": "강남기업금융2센터 · 이전 전북은행 광화문센터", "t": "기업금융지점장", "m": "010-5363-4440", "o": "02-560-8513", "fx": "02-3446-9954", "em": "", "intro": "김민호 대표 소개", "last": "2026-04-09", "pro": ["중금리 신용대출", "APT 메리트"], "con": [], "memo": [["24", "중금리 신용대출, APT에 메리트 (전북은행 광화문센터 시절)"]], "pub": "공개자료 미확인", "st": "active", "star": true, "note": "2024·2025 주소록의 「전북은행 최양준」과 동일인(휴대폰 일치) → 통합", "src": ["24", "25", "C"], "id": "p111", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "iM뱅크", "name": "김철영", "br": "안산 반월공단영업부", "t": "지점장", "m": "010-3804-4628", "o": "031-8085-0607", "fx": "", "em": "kcy1222@dgbfn.com", "intro": "", "last": "2025-09-04", "pro": ["가능 여부 즉시 판단", "피드백 아주 빠름"], "con": [], "memo": [["25", "가능성 있고 없고를 바로 파악 피드백이 아주 빠름"]], "pub": "", "st": "active", "star": true, "note": "메일 오타 수정: dqbfn.com → dgbfn.com", "src": ["25"], "id": "p112", "contact": "Y", "extra": "", "rg": "경기"}, {"bank": "KDB산업은행", "name": "전상준", "br": "30년 근무 후 퇴직 (팀장으로 고려에 있는 듯)", "t": "지점장(전)", "m": "010-2480-9971", "o": "", "fx": "", "em": "", "intro": "", "last": "2025-07-10", "pro": ["외감법인 대상", "업종 제한 없음", "설비투자(시설자금)"], "con": ["산업은행 퇴직 — 현 소속 확인 필요"], "memo": [["25", "외감법인, 업종x, 설비투자(시설자금)"]], "pub": "", "st": "check", "star": false, "note": "", "src": ["25"], "id": "p113", "contact": "Y", "extra": "", "rg": "기타"}, {"bank": "신협", "name": "민형식", "br": "당산신협", "t": "여신팀장", "m": "010-8699-1284", "o": "", "fx": "02-6952-6505", "em": "hshy1284@cu.co.kr", "intro": "직접 뚫음", "last": "2026-04-08", "pro": ["물건지 또는 대표 소재지 중 하나만 서울이면 가능"], "con": ["건설업·부동산업 불가"], "memo": [["25", "1. 물건지나 대표 소재지, 둘중 하나가 서울이면됨. 2. 업체가 건설업이나, 부동산업만 아니면됨"]], "pub": "", "st": "active", "star": true, "note": "", "src": ["25"], "id": "p114", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "신협", "name": "(담당자 미상)", "br": "남구로", "t": "", "m": "", "o": "", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "", "st": "check", "star": false, "note": "지점명만 기재(노란색 표시), 담당자·연락처 없음", "src": ["25"], "id": "p115", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "저축은행·캐피탈", "name": "주성훈", "br": "OK저축은행 마포", "t": "본부장", "m": "010-9871-7782", "o": "", "fx": "", "em": "joosungh@naver.com", "intro": "김민호 대표 소개", "last": "2026-04-09", "pro": ["개인대출(신용·담보)", "부동산 후순위 가능"], "con": [], "memo": [["25", "개인대출(신용, 담보), 부동산후순위 가능"]], "pub": "", "st": "active", "star": false, "note": "메일 오타 수정: nave.rcom → naver.com", "src": ["25"], "id": "p116", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "저축은행·캐피탈", "name": "황기준", "br": "BNK캐피탈", "t": "대표", "m": "010-5645-7615", "o": "", "fx": "", "em": "", "intro": "김경선", "last": "", "pro": ["후순위 담보대출"], "con": [], "memo": [["25", "후순위 담보대출 진행,"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["25"], "id": "p117", "contact": "N", "extra": "", "rg": "기타"}, {"bank": "2금융 중개·대부·기타", "name": "임종현", "br": "대출 상담사(2금융)", "t": "팀장", "m": "010-3990-8293", "o": "", "fx": "0504-251-8293", "em": "magnoria@naver.com", "intro": "상필 소개", "last": "", "pro": ["농협·수협·신협·캐피탈 전부 알아봐 줌", "담보건 선호"], "con": ["보증서 취급 안 함"], "memo": [["25", "농협, 수협, 신협, 캐피탈 다 알아봐줌 주로 담보건 좋아함. 단점 보증서 취급 안함"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["25", "26"], "id": "p118", "contact": "N", "extra": "", "rg": "기타"}, {"bank": "2금융 중개·대부·기타", "name": "한수대", "br": "로제의 대출이야기 대출연구소 (2금융 통합)", "t": "소장 (주소록: 팀장)", "m": "010-9037-9586", "o": "", "fx": "0505-937-9586", "em": "", "intro": "", "last": "", "pro": ["APT·토지 등 2금융권 통합 한도 검토"], "con": ["2025 주소록에 「전화번호 바뀜」 표시"], "memo": [["24", "APT 토지 등 2금융권 통합 한도 검토 가능"], ["25", "e-mail칸: 전화번호 바뀜 (행 빨간색)"]], "pub": "", "st": "check", "star": false, "note": "2026-09 명함의 휴대폰이 주소록과 동일 — 번호 유효 여부 통화로 확인", "src": ["24", "25", "C"], "id": "p119", "contact": "N", "extra": "", "rg": "기타"}, {"bank": "2금융 중개·대부·기타", "name": "손대호", "br": "D&CO (대부)", "t": "이사", "m": "010-7703-4680", "o": "", "fx": "0504-070-4680", "em": "dnco999@gmail.com", "intro": "상필 소개", "last": "", "pro": ["건축자금·PF·토지담보·대부", "3개월 단위 사용", "소액 자금 빠름"], "con": ["금리 높음"], "memo": [["25", "건축자금, pf, 토지담보대출, 대부 진행 가능/ 3개월 단위로 사용가능, 작은 금액 자금 빨리나옴/ 금리 높음"]], "pub": "", "st": "active", "star": false, "note": "메일 오타 수정: gmail.ncom → gmail.com", "src": ["25", "26"], "id": "p120", "contact": "N", "extra": "", "rg": "기타"}, {"bank": "2금융 중개·대부·기타", "name": "이상혁", "br": "사채", "t": "", "m": "010-6791-3429", "o": "", "fx": "", "em": "", "intro": "", "last": "", "pro": ["최대 10억"], "con": ["최장 100일", "1~2주마다 원리금 균등상환", "수수료 대출금의 2%"], "memo": [["25", "최대 10억까지, 최장 100일 상환, 일주일~이주에 한번씩 원리금 균등상환, 대출금액의 2% 수수료 지급"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["25"], "id": "p121", "contact": "N", "extra": "", "rg": "기타"}, {"bank": "2금융 중개·대부·기타", "name": "박동민", "br": "LMH GROUP (강남구 영동대로 602)", "t": "이사", "m": "010-6483-5014", "o": "", "fx": "031-526-2026", "em": "DOG90005@NAVER.COM", "intro": "", "last": "2026-04-17", "pro": ["벤처인증(투자형)", "엔젤투자형 기보 정책자금 보증 100%"], "con": ["업력 7년 미만 법인만"], "memo": [["25", "벤처인증(투자형300>>150으로인하),/ 엔젤투자형 기보정책자금 보증100%가능>업력7년미만 법인만가능"]], "pub": "", "st": "active", "star": false, "note": "", "src": ["25"], "id": "p122", "contact": "Y", "extra": "", "rg": "서울"}, {"bank": "보증·보험·신용정보", "name": "남기정", "br": "신용보증기금 서울서부영업본부", "t": "부장 / 경영공학박사", "m": "010-5239-3000", "o": "02-710-4336", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "", "st": "active", "star": false, "note": "", "src": ["C"], "id": "p123", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "보증·보험·신용정보", "name": "김용태", "br": "SGI서울보증 양재지점 · (주)바인에스엠대리점", "t": "대표", "m": "010-6305-2161", "o": "02-2058-0021", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "", "st": "active", "star": false, "note": "", "src": ["C"], "id": "p124", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "보증·보험·신용정보", "name": "권혁진", "br": "이크레더블 TCB센터", "t": "본부장 (경영학박사·경영지도사)", "m": "010-8603-3138", "o": "02-2101-9277 / 대표 02-2101-9200", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "", "st": "active", "star": false, "note": "", "src": ["C"], "id": "p125", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "보증·보험·신용정보", "name": "조칠구", "br": "고려신용정보 강남지점", "t": "팀장", "m": "010-3238-7998", "o": "02-3450-2891", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "", "st": "active", "star": false, "note": "", "src": ["C"], "id": "p126", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "보증·보험·신용정보", "name": "강충남", "br": "신한라이프 한결사업본부/SPECIAL지점", "t": "부지점장", "m": "010-3160-2244", "o": "", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "", "st": "active", "star": false, "note": "", "src": ["C"], "id": "p127", "contact": "N", "extra": "", "rg": "기타"}, {"bank": "보증·보험·신용정보", "name": "정석구", "br": "미래에셋생명 GA2부문3팀", "t": "부지점장", "m": "010-4237-8603", "o": "02-3271-5721", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "", "st": "active", "star": false, "note": "", "src": ["C"], "id": "p128", "contact": "N", "extra": "", "rg": "서울"}, {"bank": "보증·보험·신용정보", "name": "정연섭", "br": "KB라이프 GA3사업단", "t": "사업단장", "m": "010-3230-6700", "o": "02-2144-2468", "fx": "", "em": "", "intro": "", "last": "", "pro": [], "con": [], "memo": [], "pub": "", "st": "active", "star": false, "note": "", "src": ["C"], "id": "p129", "contact": "N", "extra": "", "rg": "서울"}], "SUM": {"IBK기업은행": {"pro": ["신보·기보 보증서 처리에 능한 담당 다수 (송대한·이은성)", "BBB+ 이상 신용·대환·창업기술금융 (이경), 수탁보증 (허성호)", "신용검토 가능한 담당 다수 (황성규·이준섭·이승엽)"], "con": ["「기업은행 스타일」 — 보수적·지속 체크 필요 (최유창·김현철·조일형)", "인사이동 잦음 — 황성규·한은영·유문예·송대한 근무처 변경 확인 필요", "농축산 불가·담보 BBB+ 이상 등 내부 기준 까다로움"]}, "KB국민은행": {"pro": ["BBB 이상 TCB 신용 + 국민 수탁보증 (김필수)", "개인사업자 신용검토 (윤종길), 대환+추가자금 (김철호)", "경기남부 전역 커버 (김현수, 단 전결권 없음)"], "con": ["최근 통화 기록이 2025-08-05가 마지막 — 관계 공백", "김동경 중국 발령 등 이동 다수, 지점 확인 필요 인원 많음", "메모 없는 담당이 많아 성향 파악 부족"]}, "신한은행": {"pro": ["담당자 가장 많고 최근 접촉도 가장 활발 (2026년 4건)", "수도권 전역 신보·기보·재단·무보 (손유승), 보증서·재단 빠른 처리 (이민구)", "지역 커버 넓음: 충청(송영삼·서석현)·전북(양해두)·인천(황지환)·이천(유영하)·경기남부(임정석)"], "con": ["등급 좋은 기업 위주 (이민구)·본점 승인 필요 (양해두)", "신뢰 주의 인원 (권순표), 부실 후 소극화 우려 (김형신)", "퇴직 (박종을)·요즘 잘 안 함 (백원경)"]}, "하나은행": {"pro": ["보증서 전부·재단·제조업 전국 (권태형), 사업자번호로 선검토 (전종규)", "신보·기보·무보 경기권 (허경덕 — 2026-08 최근 접촉)", "특화 상품: 서울시 소상공인 안심통장 (최정화), 의사·병의원 생신용 (조준철)"], "con": ["서울·근교/수도권 한정 담당 다수", "첫 거래 신용 불가 (임중훈), 애매한 업체 거절 (강석태)", "기표 후 부수거래 유도 경향, 김원호 본점 발령"]}, "우리은행": {"pro": ["BBB 이상 신용 취급 (김종선)", "재단·기금 (김정호), 광진구 재단 (황태종), 광주 신보·기보 (이창석)", "김민호 대표 소개 라인 (이현경) 최근 확보"], "con": ["피드백 느림 (정재훈)·가끔 잠수 (서홍욱)·매우 깐깐 (최도현)", "지역 제한 많음 (서울만·광진구 재단만)", "광화문BIZ 최현순 「탈락」"]}, "NH농협은행": {"pro": ["신보 강북지점 친분으로 적극 검토 (김세진)", "농신보 서부 가능 (여준형), 대구 지역 (최인규)"], "con": ["김세진 농신보 안 함", "박명숙 본인 진행 불가", "명함 신규 인원(동탄역·인천삼산) 성향 미파악"]}, "Sh수협은행": {"pro": ["가장 최근 접촉 (최미경 2026-09-11) — 재단 외 보증서 전부", "담보대출 전문 (이원주), 저축은행 연계 (김미향)"], "con": ["재단 보증 불가 (최미경)", "박훈화 퇴직"]}, "SC제일은행": {"pro": ["업력 3년↑ 사업자 중금리 신용대출 + APT 한도 메리트", "개인사업자·법인대출 (이경수·염창성), 경북 구미 (김흥림)"], "con": ["보증서 관련 메모 적음 (신기보는 서유승 당해 방침뿐)", "연락처 정보가 출처마다 다름 (김홍식)"]}, "BNK부산은행": {"pro": ["기보에 강하고 보증서 위주, 거래업체 신용 가능", "수도권 전역 신청 가능 (이두한), 직접 미팅 진행"], "con": ["수도권 외 전국 불가", "김경록 부산 발령 → 부산권 업체만 가능"]}, "iM뱅크": {"pro": ["피드백 매우 빠름 · 가능 여부 즉시 판단 (김철영)", "중금리 신용대출·APT 메리트 (최양준)"], "con": ["담당 2명뿐 · 상세 조건 메모 부족"]}, "KDB산업은행": {"pro": ["외감법인 시설자금(설비투자), 업종 제한 없음"], "con": ["담당자 퇴직 — 현 소속 확인 필요"]}, "신협": {"pro": ["물건지·대표 소재지 중 하나만 서울이면 가능"], "con": ["건설업·부동산업 불가"]}, "저축은행·캐피탈": {"pro": ["개인 신용·담보, 부동산 후순위 (OK저축), 후순위 담보 (BNK캐피탈)"], "con": ["고금리 2금융권"]}, "2금융 중개·대부·기타": {"pro": ["담보·PF·건축자금 등 은행권 밖 자금 연결", "벤처인증·엔젤투자형 기보 보증 (LMH)"], "con": ["고금리·고수수료 (대부·사채)", "보증서 취급 불가 (임종현)"]}, "보증·보험·신용정보": {"pro": ["신보·SGI·TCB 기관 담당자 확보"], "con": ["명함만 있고 거래 메모 없음"]}}, "ORDER": ["신한은행", "하나은행", "IBK기업은행", "KB국민은행", "우리은행", "NH농협은행", "Sh수협은행", "SC제일은행", "BNK부산은행", "iM뱅크", "KDB산업은행", "신협", "저축은행·캐피탈", "2금융 중개·대부·기타", "보증·보험·신용정보"], "BRANCH": {"BNK부산은행": [["마산지점", "055-255-0161"], ["창원지점", "055-263-7661"], ["울산중앙지점", "052-243-2100"], ["울산금융센터", "052-267-5301"], ["부산 화명동금융센터", "051-361-2378"]]}, "AD": "부동산담보대출.특수목적대출.기업대출.금융에서 필요하는 모든 대출을 진행 하고 있습니다,\n▣고액담보대출(모든부동산 가능) ▣브릿지대출(단기성BL) ▣아파트분양잔금.미등기대출(서울.경기.인천.광역시) ▣미분양상가대출(임차인 태핑+전략적기획솔루션) ▣잔금대출(계약.중도금 지급후 잔금부족건) ▣리파이낸싱(기대출 대환) ▣체육시설(신축20억.개보수자금10억)융자 ▣미준공건축자금대출(마무리 공사비) ▣자산유동화(ABL) ▣M&A(기업 합병) ▣부실담보부채권(NPL) ▣프로젝트파이낸싱(분양성 위주 통과건 취급) ▣개발자금(시행자금) ▣에쿼티투자(상환.있는 프로젝트) ▣콜자금.콜머니(예치자금) ▣만기날 도래된 브릿지대출 연장을 위한 자금보충 ▣기타.금융에서 필요하는 자금 대출 진행합니다.\n※본자금은 법인자금 형태로 대출입니다. ※여신한도: 소액 5억 ~ 고액 1000억 이상도 가능 ※상환기간: 3개월~6개월(조건따라 1회연장가능) ※기준금리: 연12~20%(차등적용) ※비용별도: 유\n●대출조건은 상시 상환구도, 물건따라 차이가 있어며, 수시확인후 진행하시기 바랍니다.●\n▣한도 추가대출. 일반 모든부동산 대출 진행가능합니다.\n[접수시 기본자료는 ccyy0716@naver.com 보내주시면 빠른검토후 결과드리겠습니다.]", "OTHER": [{"cat": "전문자격", "org": "SAE TAX PARTNERS", "name": "임은지", "t": "대표세무사", "m": "010-2323-5259", "o": "명함 미기재", "memo": "사무실 전화 미기재. 02-6455-7008은 팩스."}, {"cat": "기업/인증", "org": "한국인증센터(주)", "name": "임부택", "t": "대표이사", "m": "010-9064-7292", "o": "02-713-9005", "memo": ""}, {"cat": "전문자격", "org": "법무사", "name": "손유태", "t": "대표 법무사", "m": "010-2694-4745", "o": "02-2663-4745", "memo": "명함 재판독: 손유대 → 손유태"}, {"cat": "전문자격", "org": "정안감정평가법인(주)", "name": "송하준", "t": "이사", "m": "010-9162-6204", "o": "070-7728-1396", "memo": "명함 재판독: 승하준 → 송하준"}, {"cat": "교육", "org": "국제항공운송교육원", "name": "임정희", "t": "원장", "m": "010-7191-5603", "o": "02-6080-1110", "memo": ""}, {"cat": "전문자격", "org": "블루핀 특허법률사무소", "name": "이준현", "t": "대표변리사", "m": "010-5642-9273", "o": "명함 미기재", "memo": ""}, {"cat": "컨설팅", "org": "(주)고려경영연구소 / SBRC", "name": "황인국", "t": "부지점장", "m": "010-2962-8484 / 010-7534-7837", "o": "02-1666-1648", "memo": "사무실 번호는 명함 원문 표기(02.1666.1648)."}, {"cat": "기업/플랫폼", "org": "NUGUNASA Auction / (주)웰엘코리아", "name": "조성훈", "t": "CEO", "m": "010-5778-6194", "o": "070-7537-2212", "memo": ""}, {"cat": "기업/브랜드", "org": "FARR ATHLETICA / 주식회사 오버더피크", "name": "이준배", "t": "대표 / CEO", "m": "010-9974-1020", "o": "070-8019-0431", "memo": ""}, {"cat": "교육/투자", "org": "서강대학교", "name": "정재욱", "t": "스타트업 액셀러랩 겸임교수 / KAIST MBA", "m": "010-3382-3737", "o": "명함 미기재", "memo": ""}, {"cat": "기업/식품", "org": "햇살농가(주)", "name": "임정남", "t": "대표", "m": "010-2212-6408", "o": "070-8256-6408 / 02-3463-6408", "memo": "명함 재판독: 핵쌀농가(주) → 햇살농가(주) / 사무실 번호 순서: 공장 / 매장(전화·팩스 겸용)."}, {"cat": "기업/제조", "org": "(주)현대우드산업", "name": "이현우", "t": "대표이사", "m": "010-2970-3232", "o": "032-572-3230", "memo": ""}, {"cat": "전문자격", "org": "법무법인(유) 광장", "name": "김상우", "t": "변호사 / Partner", "m": "010-2723-1272", "o": "02-6386-6609", "memo": ""}, {"cat": "컨설팅", "org": "Social Craft Lab Impact&Co", "name": "이종희", "t": "대표", "m": "판독 불가", "o": "명함 미기재", "memo": "금박 글씨와 빛 반사로 휴대폰 전체 숫자 판독 불가. 원본 명함 재확인 필요."}, {"cat": "미디어", "org": "AI뉴스", "name": "정승익", "t": "Publisher", "m": "010-9562-2198", "o": "02-6060-2198", "memo": ""}, {"cat": "마케팅/브랜딩", "org": "Moodyproject", "name": "심성훈", "t": "CEO", "m": "010-5442-1738", "o": "명함 미기재", "memo": ""}, {"cat": "전문자격", "org": "노무법인 새로", "name": "정유진", "t": "대표 공인노무사", "m": "010-2988-9690", "o": "명함 미기재", "memo": ""}, {"cat": "교육", "org": "홍익대학교", "name": "이성준", "t": "초빙교수 / 디자인·예술경영학부", "m": "010-5278-6823", "o": "명함 미기재", "memo": ""}, {"cat": "기업", "org": "K-SOLUTIONS", "name": "전영진", "t": "영업팀 부장", "m": "010-3333-9321", "o": "02-6415-2236", "memo": "명함 재판독: 정영진 → 전영진"}, {"cat": "기업", "org": "AJ셀카", "name": "정재완", "t": "매입전문 매니저", "m": "010-4521-1476", "o": "명함 미기재", "memo": ""}, {"cat": "기업/제조", "org": "ANSSIL", "name": "우승현", "t": "제조본부 부장", "m": "010-4163-4486", "o": "명함 미기재", "memo": ""}, {"cat": "전문자격", "org": "대한변리사회 / 로한 국제특허법률사무소", "name": "이준석", "t": "변리사", "m": "010-2654-0410", "o": "070-5117-0663 / 02-2039-1479", "memo": "사무실 번호 순서: 직통 / 대표."}, {"cat": "전문자격", "org": "세무회계 이랑", "name": "강영욱", "t": "대표세무사", "m": "010-2575-1931", "o": "02-6952-5963", "memo": ""}, {"cat": "전문자격", "org": "세무회계 금백", "name": "전정치", "t": "대표세무사", "m": "010-7548-6310", "o": "02-6958-5515", "memo": ""}, {"cat": "기업/마케팅", "org": "주식회사 케이앤아이", "name": "김범기", "t": "대표 / 개인·법인사업자 DB 공급 및 광고대행", "m": "010-7165-3523", "o": "명함 미기재", "memo": ""}, {"cat": "전문자격", "org": "신아특허법률사무소", "name": "최동현", "t": "대표 변리사 / 기술거래사", "m": "010-7260-8496", "o": "02-6958-9030", "memo": "사무실 전화와 팩스에 취소선이 있어 사용 여부 확인 필요. 휴대폰 우선."}, {"cat": "전문자격", "org": "모두회계사무소", "name": "김지섭", "t": "대표회계사", "m": "010-6323-7983", "o": "070-8657-2277", "memo": "070-8282-2199는 팩스로 제외."}], "TODAY": "2026-10-12", "RAW": 239, "UNIQUE": 162, "REGION": ["서울", "경기", "인천", "충청", "호남", "영남", "기타"]}</script>
 <script>
 /* ===== 서버 연결 설정 ===== */
 const SB_URL='https://gcerzpjmpwytndnqlvdb.supabase.co';
@@ -475,13 +561,30 @@ const SB_KEY='sb_publishable_8pUt4pw37PknNOYqY5wfZw_-u10o8v4';
 const TOKKEY='ownerslab-fin-token';
 /* 열쇠는 '이 창이 열려 있는 동안만' 기억한다 (창을 닫으면 자동 로그인 안 됨) */
 const KEEP={
-  get(){ try{return sessionStorage.getItem(TOKKEY)}catch(e){return null} },
-  set(v){ try{sessionStorage.setItem(TOKKEY,v)}catch(e){} },
+  get(){
+    try{const v=sessionStorage.getItem(TOKKEY); if(v)return v;}catch(e){}
+    try{
+      const raw=localStorage.getItem(TOKKEY); if(!raw)return null;
+      const o=JSON.parse(raw);
+      if(!o||!o.t||!o.exp||Date.now()>o.exp){localStorage.removeItem(TOKKEY);return null}
+      return o.t;                                   // 7일 안이면 유지, 지나면 자동 풀림
+    }catch(e){return null}
+  },
+  set(v,keep){
+    try{sessionStorage.setItem(TOKKEY,v)}catch(e){}
+    try{
+      if(keep)localStorage.setItem(TOKKEY,JSON.stringify({t:v,exp:Date.now()+7*864e5}));
+      else localStorage.removeItem(TOKKEY);
+    }catch(e){}
+  },
   del(){ try{sessionStorage.removeItem(TOKKEY)}catch(e){}
          try{localStorage.removeItem(TOKKEY)}catch(e){} }
 };
 
-const EMB=JSON.parse(document.getElementById('seed').textContent);  // 부록·이관용 원본
+/* 이 파일에는 자료가 들어 있지 않습니다. 전부 서버에서 받아옵니다. */
+const BANK_ORDER=['IBK기업은행','KB국민은행','신한은행','하나은행','우리은행','NH농협은행','Sh수협은행',
+  'SC제일은행','BNK부산은행','iM뱅크','KDB산업은행','신협','저축은행·캐피탈','2금융 중개·대부·기타','보증·보험·신용정보'];
+const REGION_ORDER=['서울','경기','인천','충청','호남','영남','기타'];
 let TOKEN=null, ME=null;
 
 async function api(fn,args){
@@ -514,7 +617,10 @@ function logout(silent){
     document.getElementById('saveInfo').innerHTML='';
     document.getElementById('empty').hidden=true;
     document.getElementById('btnAdmin').hidden=true;
-    if(adlg.open)adlg.close(); if(dlg.open)dlg.close(); if(vdlg.open)vdlg.close();
+    document.getElementById('btnMemo').hidden=true;
+    APX=[];MEMO=[];paintApx();                      // 부록·메모도 화면에서 지운다
+    document.getElementById('memoCnt').textContent='0';
+    [adlg,dlg,vdlg,mdlg,medlg,axdlg].forEach(d=>{try{if(d.open)d.close()}catch(e){}});
   }catch(e){}
   document.getElementById('gPw').classList.remove('on');
   document.getElementById('gLogin').classList.add('on');
@@ -523,7 +629,7 @@ function logout(silent){
 }
 const SRC={'24':'2024','25':'내파일','26':'전달본','C':'명함'};
 const STL={active:'진행가능',check:'확인필요',off:'중단·퇴직'};
-const RGS=EMB.REGION||[];
+const RGS=REGION_ORDER;
 const RGDEF=RGS[RGS.length-1]||'기타';
 
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -553,6 +659,7 @@ async function reload(){
   ST.R=r.rows||[];
   ME={name:r.name,role:r.role};
   paintWho();render();info();
+  loadApx();loadMemo();            // 부록·메모는 로그인한 사람만 볼 수 있다
   return true;
 }
 function paintWho(){
@@ -562,8 +669,9 @@ function paintWho(){
   el.innerHTML=`<b>${esc(ME.name)}</b><span class="rb">${ME.role==='admin'?'관리자':'팀원'}</span>`+
     `<button type="button" id="bPwOpen">비번변경</button><button type="button" id="bOut">로그아웃</button>`;
   document.getElementById('btnAdmin').hidden = ME.role!=='admin';
+  document.getElementById('btnMemo').hidden = false;
 }
-function banks(){const s=[...(EMB.ORDER||[])];ST.R.forEach(r=>{if(r.bank&&!s.includes(r.bank))s.push(r.bank)});
+function banks(){const s=[...BANK_ORDER];ST.R.forEach(r=>{if(r.bank&&!s.includes(r.bank))s.push(r.bank)});
   return s.filter(b=>ST.R.some(r=>r.bank===b))}
 function regions(){const s=[...RGS];ST.R.forEach(r=>{if(r.rg&&!s.includes(r.rg))s.push(r.rg)});return s}
 
@@ -846,7 +954,7 @@ document.getElementById('fLogin').addEventListener('submit',async e=>{
   const r=await api('fin_login',{p_phone:f.phone.value,p_pw:f.pw.value,p_ua:navigator.userAgent});
   b.disabled=false;b.textContent='로그인';
   if(!r.ok){showErr('eLogin',r.msg||'로그인하지 못했습니다');f.pw.value='';f.pw.focus();return}
-  TOKEN=r.token; KEEP.set(TOKEN);
+  TOKEN=r.token; KEEP.set(TOKEN, !!f.keep.checked);
   f.pw.value='';
   if(r.must_change_pw){gLogin.classList.remove('on');gPw.classList.add('on');
     document.getElementById('fPw').elements.old.focus();return}
@@ -1001,11 +1109,8 @@ document.getElementById('tMem').addEventListener('click',async e=>{
 function paneImp(){
   const el=document.getElementById('tImp');
   el.innerHTML=`<div class="warnbox">같은 담당자는 <b>덮어쓰기</b>되므로 여러 번 눌러도 중복이 생기지 않습니다. 다만 서버에서 이미 수정한 내용이 있다면 파일 내용으로 되돌아갑니다.</div>
-    <p class="hint"><b>① 이 파일에 들어 있는 원본 명단 올리기</b><br>
-      제가 정리해 드린 ${(EMB.R||[]).length}명이 이 파일 안에 들어 있습니다. 처음 한 번만 누르시면 됩니다.</p>
-    <div class="row"><button class="btn pri" type="button" id="bImpSeed">원본 ${(EMB.R||[]).length}명 올리기</button></div>
-    <p class="hint" style="margin-top:14px"><b>② 내가 저장해 둔 파일에서 올리기</b><br>
-      예전 버전에서 「HTML 저장」으로 받아 둔 파일이 있다면, 그 파일을 골라 주세요. 그 안의 수정 내용까지 올라갑니다.</p>
+    <p class="hint"><b>저장해 둔 파일에서 올리기</b><br>
+      예전 버전(v3.x)에서 「HTML 저장」으로 받아 둔 파일이 있다면 그 파일을 골라 주세요. 그 안의 담당자 명단이 서버로 올라갑니다.</p>
     <div class="row"><input type="file" id="fImp" accept=".html,.htm"><button class="btn" type="button" id="bImpFile">이 파일로 올리기</button></div>
     <div id="impOut" class="hint" style="margin-top:12px"></div>`;
 }
@@ -1022,9 +1127,6 @@ async function doImport(rows,where){
   toast(res.msg); await reload();
 }
 document.getElementById('tImp').addEventListener('click',async e=>{
-  if(e.target.id==='bImpSeed'){
-    if(!confirm(`이 파일에 들어 있는 ${(EMB.R||[]).length}명을 서버에 올릴까요?`))return;
-    await doImport(EMB.R,'원본'); return}
   if(e.target.id==='bImpFile'){
     const f=document.getElementById('fImp').files[0];
     if(!f){toast('파일을 먼저 골라 주세요',1);return}
@@ -1035,21 +1137,155 @@ document.getElementById('tImp').addEventListener('click',async e=>{
       if(m)rows=JSON.parse(m[1].replace(/<\\\//g,'</')).R;
     }catch(err){}
     if(!rows){document.getElementById('impOut').innerHTML=
-      '<span style="color:var(--con)">그 파일에서 명단을 찾지 못했습니다. 이 리스트에서 「HTML 저장」으로 받은 파일인지 확인해 주세요.</span>';return}
+      '<span style="color:var(--con)">그 파일에서 명단을 찾지 못했습니다. 예전 버전에서 「HTML 저장」으로 받은 파일인지 확인해 주세요.</span>';return}
     if(!confirm(`고른 파일에서 ${rows.length}명을 찾았습니다. 서버에 올릴까요?`))return;
     await doImport(rows,'파일에서'); }
 });
 
-/* ===== 부록 =====
-document.getElementById('apxA').innerHTML=Object.values(EMB.BRANCH).flat()
-  .map(([n,p])=>`<tr><td>${esc(n)}</td><td class="ph">${tel(p)}</td></tr>`).join('');
-document.getElementById('apxB').textContent=EMB.AD;
-document.getElementById('apxC').innerHTML=EMB.OTHER.map(o=>
-  `<tr><td>${esc(o.cat)}</td><td>${esc(o.org)}</td><td><b>${esc(o.name)}</b></td><td>${esc(o.t)}</td><td class="ph">${tel(o.m)}</td><td class="ph">${tel(o.o)}</td><td>${esc(o.memo)}</td></tr>`).join('');
+/* ═════════ 부록 (서버 저장 · 편집 가능) ═════════ */
+let APX=[];
+const AXF={                                  // 부록 종류별 칸 정의
+  A:[['branch','지점 *',1],['tel','대표번호',0]],
+  B:[['text','내용 *',1,'area']],
+  C:[['cat','분류',0],['org','회사/기관 *',1],['name','성명 *',1],['title','직함',0],
+     ['mobile','휴대폰',0],['office','사무실',0],['memo','메모',0,'area']]
+};
+const AXH={A:['지점','대표번호'],C:['분류','회사/기관','성명','직함','휴대폰','사무실','메모']};
+
+async function loadApx(){
+  const r=await api('fin_apx_list',{p_token:TOKEN});
+  APX = r.ok ? (r.rows||[]) : [];
+  paintApx();
+}
+function paintApx(){
+  const isAdmin = ME && ME.role==='admin';
+  for(const k of ['A','B','C']){
+    const box=document.getElementById('box'+k);
+    if(!box)continue;
+    if(!ME){ box.innerHTML='<div class="locked">로그인하면 볼 수 있습니다</div>'; continue; }
+    const rows=APX.filter(x=>x.kind===k);
+    let body;
+    if(k==='B'){
+      body = rows.length
+        ? rows.map(x=>`<div class="mcard mc-y" style="margin-bottom:8px"><div class="bd2">
+            <div class="tx">${esc((x.data||{}).text)}</div></div>
+            <div class="ops"><button class="mini" data-axe="${x.id}">수정</button>
+            ${isAdmin?`<button class="mini del" data-axd="${x.id}">삭제</button>`:''}</div></div>`).join('')
+        : '<div class="empty2" style="padding:18px;text-align:center;color:var(--ink4);font-size:12.5px">내용이 없습니다</div>';
+    }else{
+      const h=AXH[k];
+      body = rows.length
+        ? `<table><thead><tr>${h.map(t=>`<th>${t}</th>`).join('')}<th class="opcol"></th></tr></thead><tbody>`+
+          rows.map(x=>{const d=x.data||{};
+            const cells = k==='A'
+              ? [esc(d.branch), tel(d.tel||'')]
+              : [esc(d.cat),esc(d.org),`<b>${esc(d.name)}</b>`,esc(d.title),tel(d.mobile||''),tel(d.office||''),esc(d.memo)];
+            return `<tr>${cells.map(c=>`<td>${c||'—'}</td>`).join('')}
+              <td class="opcol"><button class="mini" data-axe="${x.id}">수정</button>
+              ${isAdmin?` <button class="mini del" data-axd="${x.id}">삭제</button>`:''}</td></tr>`}).join('')
+          +'</tbody></table>'
+        : '<div class="empty2" style="padding:18px;text-align:center;color:var(--ink4);font-size:12.5px">내용이 없습니다</div>';
+    }
+    box.innerHTML=`<div class="apxbar"><button class="btn pri" type="button" data-axa="${k}">＋ 추가</button>
+      <span class="hint">${rows.length}건${isAdmin?'':' · 삭제는 관리자만 가능합니다'}</span></div>`+body;
+  }
+}
+/* 부록 편집창 */
+const axdlg=document.getElementById('axdlg'), axFrm=document.getElementById('axFrm');
+let axKind=null, axId=null;
+function openAx(kind,id){
+  axKind=kind; axId=id||null;
+  const cur = id ? (APX.find(x=>x.id===id)||{}).data||{} : {};
+  document.getElementById('axT').textContent =
+    (id?'수정':'추가')+' — 부록 '+kind+({A:'. 지점 대표번호',B:'. 운영 메모',C:'. 비금융 명함'}[kind]||'');
+  document.getElementById('axBody').innerHTML = AXF[kind].map(([key,label,req,type])=>
+    type==='area'
+      ? `<label class="full">${label}<textarea name="${key}" ${req?'required':''}>${esc(cur[key]||'')}</textarea></label>`
+      : `<label${kind==='A'?' class="full"':''}>${label}<input name="${key}" ${req?'required':''} value="${esc(cur[key]||'')}"></label>`
+  ).join('');
+  const mi=axFrm.querySelector('[name=mobile]'); if(mi)mi.addEventListener('input',e=>hyphenPhone(e.target));
+  axdlg.showModal();
+}
+axdlg.addEventListener('close',async()=>{
+  if(axdlg.returnValue!=='ok')return;
+  const d={}; AXF[axKind].forEach(([k])=>{const el=axFrm.querySelector(`[name=${k}]`); d[k]=el?el.value.trim():''});
+  const r=await api('fin_apx_save',{p_token:TOKEN,p_kind:axKind,p_id:axId,p_data:d});
+  toast(r.ok?(axId?'수정했습니다':'추가했습니다'):(r.msg||'저장하지 못했습니다'),!r.ok);
+  if(r.ok)loadApx();
+});
+document.querySelector('.apx').addEventListener('click',async e=>{
+  const add=e.target.closest('[data-axa]'); if(add){openAx(add.dataset.axa,null);return}
+  const ed=e.target.closest('[data-axe]');  if(ed){const x=APX.find(y=>y.id===ed.dataset.axe); if(x)openAx(x.kind,x.id); return}
+  const dl=e.target.closest('[data-axd]');
+  if(dl){ if(!confirm('이 항목을 삭제할까요?\n부록은 휴지통이 없어 바로 지워집니다.'))return;
+    const r=await api('fin_apx_del',{p_token:TOKEN,p_id:dl.dataset.axd});
+    toast(r.msg||'처리했습니다',!r.ok); if(r.ok)loadApx(); }
+});
+
+/* ═════════ 중요 메모 ═════════ */
+let MEMO=[];
+const mdlg=document.getElementById('mdlg'), medlg=document.getElementById('medlg'), meFrm=document.getElementById('meFrm');
+async function loadMemo(){
+  const r=await api('fin_memo_list',{p_token:TOKEN});
+  MEMO = r.ok ? (r.rows||[]) : [];
+  document.getElementById('memoCnt').textContent=MEMO.length;
+  paintMemo();
+}
+function paintMemo(){
+  const el=document.getElementById('mList'); if(!el)return;
+  const isAdmin = ME && ME.role==='admin';
+  el.innerHTML = MEMO.length ? MEMO.map(m=>`
+    <div class="mcard mc-${esc(m.color||'y')} ${m.pinned?'pin':''}">
+      <div class="no">${m.seq}</div>
+      <div class="bd2">
+        <div class="tx">${m.pinned?'<span class="pinflag">📌 고정</span>':''}${esc(m.body)}</div>
+        <div class="mt">${esc(m.who)||'(알수없음)'} · ${dts(m.at)}</div>
+      </div>
+      <div class="ops">
+        <button class="mini" data-mp="${m.id}" data-v="${m.pinned?0:1}">${m.pinned?'고정해제':'맨위고정'}</button>
+        <button class="mini" data-me="${m.id}">수정</button>
+        ${(isAdmin||m.mine)?`<button class="mini del" data-md="${m.id}">삭제</button>`:''}
+      </div></div>`).join('')
+    : '<div class="empty2" style="padding:30px;text-align:center;color:var(--ink4)">아직 메모가 없습니다 — 「＋ 새 메모」를 눌러 보세요</div>';
+}
+document.getElementById('btnMemo').addEventListener('click',()=>{paintMemo();mdlg.showModal()});
+document.getElementById('mX').addEventListener('click',()=>mdlg.close());
+document.getElementById('bMemoNew').addEventListener('click',()=>openMemo(null));
+
+let meId=null;
+function openMemo(id){
+  meId=id;
+  const m=id?MEMO.find(x=>x.id===id):null;
+  document.getElementById('meT').textContent=id?`메모 ${m?m.seq:''}번 수정`:'메모 작성';
+  meFrm.elements.body.value=m?m.body:'';
+  meFrm.elements.pinned.value=m&&m.pinned?'1':'0';
+  const c=(m&&m.color)||'y';
+  meFrm.querySelectorAll('[name=color]').forEach(r=>{r.checked=(r.value===c)});
+  medlg.showModal(); meFrm.elements.body.focus();
+}
+medlg.addEventListener('close',async()=>{
+  if(medlg.returnValue!=='ok')return;
+  const f=meFrm.elements;
+  const color=(meFrm.querySelector('[name=color]:checked')||{}).value||'y';
+  const r=await api('fin_memo_save',{p_token:TOKEN,p_id:meId,p_body:f.body.value,
+    p_pinned:f.pinned.value==='1',p_color:color});
+  toast(r.ok?(meId?'메모를 수정했습니다':'메모를 추가했습니다'):(r.msg||'저장하지 못했습니다'),!r.ok);
+  if(r.ok)await loadMemo();
+});
+document.getElementById('mList').addEventListener('click',async e=>{
+  const pn=e.target.closest('[data-mp]');
+  if(pn){ const r=await api('fin_memo_pin',{p_token:TOKEN,p_id:pn.dataset.mp,p_pinned:pn.dataset.v==='1'});
+    if(r.ok)await loadMemo(); else toast(r.msg||'처리하지 못했습니다',1); return}
+  const ed=e.target.closest('[data-me]'); if(ed){openMemo(ed.dataset.me);return}
+  const dl=e.target.closest('[data-md]');
+  if(dl){ if(!confirm('이 메모를 삭제할까요?'))return;
+    const r=await api('fin_memo_del',{p_token:TOKEN,p_id:dl.dataset.md});
+    toast(r.msg||'처리했습니다',!r.ok); if(r.ok)await loadMemo(); }
+});
 
 /* ═════════ 시작 ═════════ */
+paintApx();                      // 로그인 전에는 '로그인하면 볼 수 있습니다' 안내만 표시
 (async function boot(){
-  try{localStorage.removeItem(TOKKEY)}catch(e){}   // 예전 버전이 남긴 열쇠 제거
   TOKEN=KEEP.get();
   if(!TOKEN){gLogin.classList.add('on');return}
   const r=await api('fin_me',{p_token:TOKEN});
