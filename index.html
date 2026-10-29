@@ -192,13 +192,20 @@ tbody tr.fav td{border-bottom-color:var(--favln)}
 .ct .mi.cp:active{opacity:.55}
 .ct .mi.cp::after{content:" ⧉";font-size:10px;opacity:0;transition:.12s}
 .ct .mi.cp:hover::after{opacity:.65}
-/* ===== 중요 메모 ===== */
-.btn.memo{background:#fff4e0;border-color:#e8b45c;color:#8a5a04;font-weight:700}
-.btn.memo:hover{background:#ffe9c7;border-color:#d79a2e}
-.btn.memo .cnt{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 5px;margin-left:2px;
-  border-radius:999px;background:#d79a2e;color:#fff;font-size:10.5px;font-weight:800;font-variant-numeric:tabular-nums}
-:root[data-theme="dark"] .btn.memo,
-:root:not([data-theme="light"]) .btn.memo{background:#2e2616;border-color:#6b5222;color:#f2b45a}
+/* ===== 중요 메모 (상단 지표 패널 옆) ===== */
+.kpiwrap{display:flex;align-items:stretch;gap:10px;flex-wrap:wrap}
+.memobtn[hidden]{display:none}          /* hidden 속성이 display 보다 먼저 적용되도록 */
+.memobtn{display:inline-flex;align-items:center;gap:7px;padding:7px 15px;cursor:pointer;
+  border-radius:10px;border:1px solid #c98612;white-space:nowrap;
+  background:linear-gradient(180deg,#fbbf38 0%,#e79a10 100%);color:#3a2600;
+  font-size:12.5px;font-weight:800;letter-spacing:-.01em;
+  box-shadow:0 2px 0 rgba(0,0,0,.18),0 0 0 1px rgba(255,255,255,.12) inset;transition:.14s}
+.memobtn:hover{background:linear-gradient(180deg,#ffcc4d 0%,#f0a716 100%);transform:translateY(-1px)}
+.memobtn:active{transform:translateY(0);box-shadow:0 1px 0 rgba(0,0,0,.18)}
+.memobtn .ic{font-size:13px;line-height:1}
+.memobtn .cnt{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 6px;
+  border-radius:999px;background:#3a2600;color:#ffd87a;font-size:11px;font-weight:800;font-variant-numeric:tabular-nums}
+.memobtn.zero .cnt{background:rgba(58,38,0,.42);color:#fff3d4}
 .mlist{display:flex;flex-direction:column;gap:9px}
 .mcard{border:1px solid var(--line);border-left-width:4px;border-radius:10px;padding:10px 12px;background:var(--panel2);
   display:flex;gap:10px;align-items:flex-start}
@@ -383,7 +390,8 @@ dialog form,.vw{display:flex;flex-direction:column;max-height:92vh}
 <div class="gate on" id="gLogin"><form class="gbox" id="fLogin">
   <div class="mark">OL</div>
   <h2>금융기관 담당자 리스트</h2>
-  <p class="gs">오너스랩 전용 · 승인된 분만 이용할 수 있습니다</p>
+  <p class="gs">오너스랩 전용 · 승인된 분만 이용할 수 있습니다<br>
+    <b style="color:var(--accent);font-variant-numeric:tabular-nums">버전 v4.6</b></p>
   <div class="gerr" id="eLogin"></div>
   <label>휴대폰 번호</label>
   <input name="phone" inputmode="numeric" autocomplete="username" placeholder="010-0000-0000" required>
@@ -402,7 +410,8 @@ dialog form,.vw{display:flex;flex-direction:column;max-height:92vh}
 <div class="gate" id="gPw"><form class="gbox" id="fPw">
   <div class="mark">OL</div>
   <h2>비밀번호 변경</h2>
-  <p class="gs">보안을 위해 처음 로그인하면 비밀번호를 바꿔야 합니다</p>
+  <p class="gs">보안을 위해 처음 로그인하면 비밀번호를 바꿔야 합니다<br>
+    <b style="color:var(--accent);font-variant-numeric:tabular-nums">버전 v4.6</b></p>
   <div class="gerr" id="ePw"></div>
   <label>현재 비밀번호</label>
   <input name="old" type="password" autocomplete="current-password" required>
@@ -417,9 +426,13 @@ dialog form,.vw{display:flex;flex-direction:column;max-height:92vh}
 <header class="hd"><div class="wrap">
   <div class="brand">
     <div class="mark">OL</div>
-    <div><span class="ey">Owners Lab · Finance Desk <b style="font-weight:700;opacity:.8">v4.4</b></span><h1>금융기관 담당자 리스트</h1></div>
+    <div><span class="ey">Owners Lab · Finance Desk <b style="font-weight:700;opacity:.8">v4.6</b></span><h1>금융기관 담당자 리스트</h1></div>
   </div>
-  <div class="kpi" id="kpi"></div>
+  <div class="kpiwrap">
+    <div class="kpi" id="kpi"></div>
+    <button class="memobtn" type="button" id="btnMemo" hidden>
+      <span class="ic">📌</span><span class="lb">중요 메모</span><span class="cnt" id="memoCnt">0</span></button>
+  </div>
   <div class="whoami" id="whoami" hidden></div>
 </div></header>
 
@@ -427,7 +440,6 @@ dialog form,.vw{display:flex;flex-direction:column;max-height:92vh}
   <div class="srch"><span class="ic">⌕</span><input type="search" id="q" placeholder="검색 — 이름 · 지점 · 키워드 (예: 기보, 재단, 제조업)"></div>
   <button class="btn" type="button" id="btnExp">전체 접기</button>
   <button class="btn" type="button" id="btnFav">★ 즐겨찾기</button>
-  <button class="btn memo" type="button" id="btnMemo" hidden>📌 중요 메모 <span class="cnt" id="memoCnt">0</span></button>
   <span class="sel"><select id="fRg"><option value="">전체 지역</option></select></span>
   <span class="sel"><select id="fBank"><option value="">전체 은행</option></select></span>
   <span class="sel"><select id="fCon"><option value="">연락여부 전체</option><option value="Y">연락함</option><option value="N">미연락 (전체)</option><option value="Nown">미연락 · 내 파일 등록</option><option value="Next">미연락 · 받은 자료만</option></select></span>
@@ -607,7 +619,7 @@ function logout(silent){
   TOKEN=null;ME=null;
   KEEP.del();
   // 화면에 남은 명단을 완전히 지운다 (가림막 뒤에도 남지 않도록)
-  ST.R=[];closedBanks.clear();favOnly=false;
+  ST.R=[];closedBanks.clear();favOnly=false;firstLoad=true;
   try{
     document.getElementById('q').value='';
     ['fBank','fRg','fCon','fSt'].forEach(i=>document.getElementById(i).value='');
@@ -642,8 +654,9 @@ const rc=n=>n==null?'':n<=90?'g':n<=180?'a':'r';
 
 /* ===== 상태 ===== */
 let ST={R:[]};
-const closedBanks=new Set();   // 기본 전체 펼침 → 접힌 은행만 기억
+const closedBanks=new Set();   // 접힌 은행만 기억
 let favOnly=false;
+let firstLoad=true;            // 처음 열 때는 전체 접힌 상태로 시작
 
 function info(msg,bad){
   const el=document.getElementById('saveInfo');
@@ -658,6 +671,10 @@ async function reload(){
   if(!r.ok){ if(!r._net){logout(true);toast(r.msg||'다시 로그인해 주세요',1);} else toast(r.msg,1); return false; }
   ST.R=r.rows||[];
   ME={name:r.name,role:r.role};
+  if(firstLoad){                                  // 처음 한 번만 전체 접기
+    firstLoad=false;
+    banks().forEach(b=>closedBanks.add(b));
+  }
   paintWho();render();info();
   loadApx();loadMemo();            // 부록·메모는 로그인한 사람만 볼 수 있다
   return true;
@@ -737,8 +754,8 @@ function row(r,no){
 
 const HEAD=`<thead><tr>
   <th class="sn" style="width:10.5%">No · 이름 · 직책</th><th style="width:7%">지점</th><th style="width:4.2%">지역</th>
-  <th style="width:5.2%">연락 · 상태</th><th style="width:6.2%">최근 접촉</th>
-  <th style="width:15.5%">장점</th><th style="width:14.5%">단점 · 주의</th>
+  <th style="width:5.2%">연락 · 상태</th><th style="width:7.2%">최근 접촉</th>
+  <th style="width:15%">장점</th><th style="width:14%">단점 · 주의</th>
   <th style="width:6.8%">휴대폰</th><th style="width:8%">사무실 / 팩스</th><th style="width:7.4%">메일</th>
   <th style="width:10.3%">소개 · 비고</th><th style="width:4.4%">관리</th></tr></thead>`;
 
@@ -1229,6 +1246,7 @@ async function loadMemo(){
   const r=await api('fin_memo_list',{p_token:TOKEN});
   MEMO = r.ok ? (r.rows||[]) : [];
   document.getElementById('memoCnt').textContent=MEMO.length;
+  document.getElementById('btnMemo').classList.toggle('zero',MEMO.length===0);
   paintMemo();
 }
 function paintMemo(){
